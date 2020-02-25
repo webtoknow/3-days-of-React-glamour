@@ -2,6 +2,13 @@
 
 ## Table of contents
 
+- [Exercise 0 - Initial Setup](#exercise-0---initial-setup)
+- [Exercise 1 - Pages, Routing and Navigation](#exercise-1---pages-routing-and-navigation)
+  - [Create pages](#create-pages)
+  - [Add routes using React Router](#add-routes-using-react-router)
+- [Exercise 2 - Update favicon](#update-favicon)
+- [Exercise 3 - Add boostrap and styles](#add-boostrap-and-styles)
+
 ## Exercise 0 - Initial Setup
 
 - go to *Day-1\Exercise\Code*:
