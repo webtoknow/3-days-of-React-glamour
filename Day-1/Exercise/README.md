@@ -90,7 +90,6 @@ import LoginPage from './pages/login-page';
 import RegisterPage from './pages/register-page';
 import DashboardPage from './pages/dashboard-page';
 import NotFoundPage from './pages/not-found-page';
-import './App.css';
 
 function App() {
   return (
@@ -138,4 +137,26 @@ export default App;
       content="Fx Trading application"
     />
     <title>Fx trading app</title>
+```
+
+## Exercise 3 - Add boostrap and styles
+
+- Add boostrap
+
+```bash
+npm install --save bootstrap
+```
+
+- import Bootstrap CSS in the beginning of your *src/index.js* file:
+
+```javascript
+import 'bootstrap/dist/css/bootstrap.css';
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
+```
+
+- clear and add reset style into *src/index.css*:
+
+```css
+@import-normalize;
 ```
