@@ -8,6 +8,7 @@
   - [Add routes using React Router](#add-routes-using-react-router)
 - [Exercise 2 - Update favicon](#exercise-2---update-favicon)
 - [Exercise 3 - Add boostrap and styles](#exercise-3---add-boostrap-and-styles)
+- [Exercise 4 - Add boostrap components](#exercise-4---add-boostrap-components)
 
 ## Exercise 0 - Initial Setup
 
@@ -166,4 +167,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 ```css
 @import-normalize;
+```
+
+## Exercise 4 - Add boostrap components
+
+- install boostrap component packages:
+
+```bash
+npm install react-bootstrap --save
+npm install react-datepicker --save
 ```
