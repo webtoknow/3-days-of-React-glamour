@@ -45,9 +45,9 @@ json-server --watch db.quote.json --port 8220
 
 - from design mockup, we can see that it can be divided in 2 big sections: **FX Rates View** and **Blotter View**. Also, the first one contains many widgets looking the same, so this can be also splitted into **Widget** components
 - so, *dashboard-page* component will use 3 smaller components which will need to be created:
-- *blotter-view*
-- *fx-rates-view*
-- *widget*
+  - *blotter-view*
+  - *fx-rates-view*
+  - *widget*
 
 ![Components](https://raw.githubusercontent.com/WebToLearn/3-day-of-React-glamour/master/Design/img/components.png "Components")
 
@@ -60,9 +60,9 @@ cd components
 ```
 
 - create these 3 new React components, using the example below, as children of *components* folder:
-- blotter-view.tsx
-- fx-rates-view.tsx
-- widget.tsx
+  - blotter-view.tsx
+  - fx-rates-view.tsx
+  - widget.tsx
 
 ```JavScript
 import React, { Component } from 'react'
