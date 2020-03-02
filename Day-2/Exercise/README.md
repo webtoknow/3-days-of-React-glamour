@@ -49,7 +49,7 @@ json-server --watch db.quote.json --port 8220
 - *fx-rates-view*
 - *widget*
 
-![Components](..\\..\Design\img\components.png "Components")
+![Components](https://raw.githubusercontent.com/WebToLearn/3-day-of-React-glamour/master/Design/img/components.png "Components")
 
 - create *components* folder:
 
