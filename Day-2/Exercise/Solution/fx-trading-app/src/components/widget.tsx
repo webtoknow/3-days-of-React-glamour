@@ -1,22 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-interface Props {
-    
-}
-interface State {
-    
-}
+interface Props {}
+interface State {}
 
 class Widget extends Component<Props, State> {
-    state = {}
+  state = {};
 
-    render() {
-        return (
-            <div>
-                widget
-            </div>
-        )
-    }
+  render() {
+    return <div>widget</div>;
+  }
 }
 
-export default Widget
+export default Widget;

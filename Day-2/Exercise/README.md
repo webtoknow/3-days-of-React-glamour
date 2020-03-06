@@ -16,13 +16,13 @@
 
 ### Download all npm dependencies
 
-- go to *Day-2\Exercise\Code\fx-trading-app*:
+- go to _Day-2\Exercise\Code\fx-trading-app_:
 
 ```bash
 cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
 ```
 
-- run *npm install* to download all dependencies:
+- run _npm install_ to download all dependencies:
 
 ```bash
 npm install
@@ -30,15 +30,15 @@ npm install
 
 ### Install and use JSON Server
 
-- because we do not have a backend server and a link to a real database at this moment, we will simulate having some data using *JSON Server*
+- because we do not have a backend server and a link to a real database at this moment, we will simulate having some data using _JSON Server_
 - the first step is to install it (globally), using the following command:
 
 ```bash
 npm install json-server -g
 ```
 
-- next, we have to start it with the 2 existing files - containing *quote* and *trade* data
-- make sure you are in the following path, where both JSON files are situated: *Day-2/Exercise/Code/fx-trading-app*
+- next, we have to start it with the 2 existing files - containing _quote_ and _trade_ data
+- make sure you are in the following path, where both JSON files are situated: _Day-2/Exercise/Code/fx-trading-app_
 - run these commands in separate terminal windows:
 
 ```bash
@@ -48,65 +48,65 @@ json-server --watch db.quote.json --port 8220
 
 ### Add global styles
 
-- add the following styles to *index.css* file:
+- add the following styles to _index.css_ file:
 
- ```CSS
- @import-normalize;
+```CSS
+@import-normalize;
 
 html, body{
-    height: 100%;
-    color: #373A3C;
+   height: 100%;
+   color: #373A3C;
 }
 
 h1,h2,h3,h4,h5,h6 {
-    color: #7C7C7C;
+   color: #7C7C7C;
 }
 
 .btn-primary {
-    background-color: #3496F0;
+   background-color: #3496F0;
 }
 
 .btn-link {
-    color: #3496F0;
+   color: #3496F0;
 }
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #F2F2F2;
+   background-color: #F2F2F2;
 }
 
 .flex {
-    display: flex;
+   display: flex;
 }
 
 .flex-vertical-centered {
-    display: flex;
-    align-items: center;
+   display: flex;
+   align-items: center;
 }
 
 .title {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
+   margin-bottom: 30px;
+   padding-bottom: 20px;
 }
 
 .title-border {
-    border-bottom: 1px solid #DDDDDD;
+   border-bottom: 1px solid #DDDDDD;
 }
 
 .screen-full-height {
-    height: 100vh;
+   height: 100vh;
 }
- ```
+```
 
 ## Exercise 1 - Create blotter-view, fx-rates-view and widget components
 
 - from design mockup, we can see that it can be divided in 2 big sections: **FX Rates View** and **Blotter View**. Also, the first one contains many widgets looking the same, so this can be also splitted into **Widget** components
-- so, *dashboard-page* component will use 3 smaller components which will need to be created:
-  - *blotter-view*
-  - *fx-rates-view*
-  - *widget*
+- so, _dashboard-page_ component will use 3 smaller components which will need to be created:
+  - _blotter-view_
+  - _fx-rates-view_
+  - _widget_
 
 ![Components](https://raw.githubusercontent.com/WebToLearn/3-day-of-React-glamour/master/Design/img/components.png "Components")
 
-- create *components* folder:
+- create _components_ folder:
 
 ```bash
 cd src
@@ -114,7 +114,7 @@ mkdir components
 cd components
 ```
 
-- create these 3 new React components, using the example below, as children of *components* folder:
+- create these 3 new React components, using the example below, as children of _components_ folder:
   - blotter-view.tsx
   - fx-rates-view.tsx
   - widget.tsx
@@ -142,9 +142,9 @@ class BlotterView extends Component < Props, State > {
 export default BlotterView
 ```
 
-- in the design, we can see on the top of the dashboard a navbar, containing the logo and *Logout* button
-- next step is to include into *dashboard-page* component the navbar, *blotter-view* and *fx-rates-view* and also use *bootstrap* to place them
-- so, in *dashboard-page.ts* we will have:
+- in the design, we can see on the top of the dashboard a navbar, containing the logo and _Logout_ button
+- next step is to include into _dashboard-page_ component the navbar, _blotter-view_ and _fx-rates-view_ and also use _bootstrap_ to place them
+- so, in _dashboard-page.ts_ we will have:
 
 ```HTML
 import React from 'react';
@@ -179,7 +179,7 @@ function DashboardPage() {
 export default DashboardPage;
 ```
 
-- create *styles* folder so we can add dashboard styles:
+- create _styles_ folder so we can add dashboard styles:
 
 ```bash
 cd ..
@@ -187,7 +187,7 @@ mkdir styles
 cd styles
 ```
 
-- create *dashboard-page.css* and add the following styles:
+- create _dashboard-page.css_ and add the following styles:
 
 ```CSS
 .dashboard-container {
@@ -219,7 +219,7 @@ cd styles
 
 ### Transaction model
 
-- create a new folder named *models* into *Day-2\Exercise\Code\fx-trading-app\src* which will contain all required models:
+- create a new folder named _models_ into _Day-2\Exercise\Code\fx-trading-app\src_ which will contain all required models:
 
 ```bash
 cd Day-2\Exercise\Code\fx-trading-app\src
@@ -227,7 +227,7 @@ mkdir models
 cd models
 ```
 
-- let's make a new file there, named *transaction.tsx*,representing the *Transaction* model:
+- let's make a new file there, named _transaction.tsx_,representing the _Transaction_ model:
 
 ```JavaScript
 export interface Transaction {
@@ -284,8 +284,8 @@ class BlotterView extends Component<Props, State> {
 
 - so, we have the following behavior:
 
-  - when we initiate this component (*componentDidMount*), we should call polling mechanism, which calls *getTransactions()*
-  - *componentWillUnmount* unsubscribes from getting transactions
+  - when we initiate this component (_componentDidMount_), we should call polling mechanism, which calls _getTransactions()_
+  - _componentWillUnmount_ unsubscribes from getting transactions
 
 ### Blotter View render
 
@@ -346,6 +346,7 @@ render() {
 ```
 
 - here we display a table containing the following information from all transactions got from the backend:
+
   - id
   - username
   - ccyPair
@@ -355,9 +356,9 @@ render() {
   - tenor
   - date
 
-- we need also to create *blotter-view.css* and add the table styles:
+- we need also to create _blotter-view.css_ and add the table styles:
 
-``` CSS
+```CSS
 .blotter-table-header {
     background: #3496F0;
     color: white;
@@ -366,8 +367,42 @@ render() {
 }
 ```
 
-- dont forget to import *blotter-view.css* into *blotter-view.ts*
+- dont forget to import _blotter-view.css_ into _blotter-view.ts_
 
 ```Javascript
 import './../styles/blotter-view.css'
 ```
+
+## Exercise 3 - FX Rates View section
+
+### Rate model
+
+- into _Day-2/Exercise/Code/fx-trading-app/src/app/models_, let's make a new file, named _rate.tsx_, representing the _Rate_ model:
+
+```JavaScript
+export interface Rate {
+    buyRate: number;
+    sellRate: number;
+    ts: number;
+}
+```
+
+### Widget model
+
+- in the same location, _Day-2/Exercise/Code/ui/src/app/models_, we want to have the _widget_ class (a new file is required, _widget.tsx_):
+
+```JavaScript
+export class Widget {
+  constructor(
+    public primaryCcy: string,
+    public secondaryCcy: string,
+    public buyRate: number,
+    public sellRate: number,
+    public notional: number,
+    public tenor: string,
+    public pickCCYState: boolean
+  ) {}
+}
+```
+
+### Widget component
