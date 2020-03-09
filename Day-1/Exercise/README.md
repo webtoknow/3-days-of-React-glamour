@@ -7,8 +7,9 @@
   - [Create pages](#create-pages)
   - [Add routes using React Router](#add-routes-using-react-router)
 - [Exercise 2 - Update favicon](#exercise-2---update-favicon)
-- [Exercise 3 - Add boostrap and styles](#exercise-3---add-boostrap-and-styles)
-- [Exercise 4 - Add boostrap components](#exercise-4---add-boostrap-components)
+- [Exercise 3 - Add font awesome](#exercise-3---add-font-awesome)
+- [Exercise 4 - Add boostrap and styles](#exercise-4---add-boostrap-and-styles)
+- [Exercise 5 - Add boostrap components](#exercise-5---add-boostrap-components)
 
 ## Exercise 0 - Initial Setup
 
@@ -147,7 +148,15 @@ export default App;
     <title>Fx trading app</title>
 ```
 
-## Exercise 3 - Add boostrap and styles
+## Exercise 3 - Add font awesome
+
+- also in <head> we need to add [Font Awesome](https://fontawesome.com/v4.7.0/) library
+
+```HTML
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+```
+
+## Exercise 4 - Add boostrap and styles
 
 - Add boostrap
 
@@ -169,7 +178,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 @import-normalize;
 ```
 
-## Exercise 4 - Add boostrap components
+## Exercise 5 - Add boostrap components
 
 - install boostrap component packages:
 
