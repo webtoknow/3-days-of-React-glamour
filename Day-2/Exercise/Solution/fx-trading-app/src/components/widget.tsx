@@ -1,6 +1,12 @@
 import React, { Component } from "react";
+import { WidgetModel } from "../models/widget";
 
-interface Props {}
+interface Props {
+  index: number;
+  widget: WidgetModel;
+  currencies: string[];
+  onDelete: (index: number) => void;
+}
 interface State {}
 
 class Widget extends Component<Props, State> {

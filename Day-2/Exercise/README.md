@@ -14,6 +14,10 @@
   - [Constants file](#constants-file)
   - [Implement polling mechanism](#implement-polling-mechanism)
   - [Blotter View render](#blotter-view-render)
+- [Exercise 3 - FX Rates View section](#exercise-3---fx-rates-view-section)
+  - [Rate model](#rate-model)
+  - [Widget model](#widget-model)
+  - [FX Rates View component](#fx-rates-view-component)
 
 ### Download all npm dependencies
 
@@ -429,15 +433,145 @@ export interface Rate {
 - in the same location, _Day-2/Exercise/Code/ui/src/app/models_, we want to have the _widget_ class (a new file is required, _widget.tsx_):
 
 ```JavaScript
-export class Widget {
+export class WidgetModel {
   constructor(
     public primaryCcy: string,
     public secondaryCcy: string,
     public buyRate: number,
     public sellRate: number,
-    public notional: number,
+    public notional: number | null,
     public tenor: string,
     public pickCCYState: boolean
   ) {}
+}
+```
+
+### FX Rates View component
+
+FX Rates View component is the left-side of the screen, containing all Widget Components:
+
+```Javascript
+import React, { Component } from 'react'
+import { WidgetModel } from '../models/widget'
+import { backendUrl } from '../constants';
+import Widget from './widget';
+
+import './../styles/fx-rates-view.css'
+
+interface Props {
+}
+
+interface State {
+  widgets: WidgetModel[];
+  currencies: string[];
+}
+
+class FxRatesView extends Component<Props, State> {
+  state = {
+    widgets: [],
+    currencies: []
+  }
+
+  componentDidMount() {
+    this.getCurrencies();
+  }
+
+  getCurrencies() {
+    fetch(backendUrl.quoteService.getCurrencies)
+        .then(response => response.json())
+        .then(currencies => this.setState({ currencies }));
+  }
+
+  onAddWidget = () =>  {
+    this.setState({ widgets: [...this.state.widgets, new WidgetModel('', '', 0, 0, null, '', true)] });
+  }
+
+  onDeleteWidget = (index: number) => {
+    this.setState({ widgets: this.state.widgets.splice(index, 1) });
+  }
+
+  render() {
+    const { currencies, widgets } = this.state
+    const widgetList = widgets.map((widget, index) => (
+      <Widget
+        key={index}
+        index={index}
+        widget={widget}
+        currencies={currencies}
+        onDelete={this.onDeleteWidget}
+      >
+      </Widget>
+  ));
+    return (
+      <div>
+        <h4 className="title">Fx Rates View</h4>
+        <div className="container-widget">
+          {widgetList}
+          <button className="button-widget" onClick={this.onAddWidget}>
+            <span className="fa fa-plus button-plus"></span>
+          </button>
+        </div >
+      </div >
+    )
+  }
+}
+
+export default FxRatesView
+```
+
+so, as we can see:
+
+- we are fetching currencies pairs from *Quote Service*
+- we use Widget Component to render all widgets and pass index, currencies and onDelete as props
+- we have the possibility to add a new widget by clicking on "+" button
+- when a new widget is added, a new Widget component is created with default/empty values
+- when a widget is removed, onDeleteWidget method is called, which uses the JavaScript splice method
+- don't forget to create _fx-rates0view.css_ and add the following styles:
+
+```CSS
+.container-widget {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: 2rem;
+}
+
+.button-widget {
+    width: 47%;
+    height: 250px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.button-plus {
+    font-size: 60px;
+    color: grey;
+}
+
+.widget {
+    display: flex;
+    flex-basis: 47%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-bottom: 2.5rem;
+    height: 297px;
+}
+
+@media only screen and (max-width: 1440px) {
+    .rate {
+        font-size: 26px;
+    }
+}
+```
+
+- fix type errors by adding Props in <Widget> component:
+
+```Javascript
+interface Props {
+  index: number;
+  widget: WidgetModel;
+  currencies: string[];
+  onDelete: (index: number) => void;
 }
 ```
