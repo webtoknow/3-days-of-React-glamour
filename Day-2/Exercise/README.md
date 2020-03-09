@@ -11,6 +11,7 @@
 - [Exercise 1 - Create blotter-view, fx-rates-view and widget components](#exercise-1---create-blotter-view-fx-rates-view-and-widget-components)
 - [Exercise 2 - Blotter View section](#exercise-2---blotter-view-section)
   - [Transaction model](#transaction-model)
+  - [Constants file](#constants-file)
   - [Implement polling mechanism](#implement-polling-mechanism)
   - [Blotter View render](#blotter-view-render)
 
@@ -244,17 +245,53 @@ export interface Transaction {
 }
 ```
 
+### Constants file
+
+- to have all backend URLs in one place we need to create a *constants.tsx* file in */src*:
+
+```Javascript
+export const authApi = 'http://localhost:8200'
+export const tradeApi = 'http://localhost:8210'
+export const quoteApi = 'http://localhost:8220'
+
+export const backendUrl = {
+  authService: {
+    authenticate: `${authApi}/user/authenticate`,
+    register: `${authApi}/user/register`,
+  },
+  fxTradeService: {
+    getTransactions: `${tradeApi}/transactions`,
+    saveTransaction: `${tradeApi}/transactions`,
+  },
+  quoteService: {
+    getCurrencies: `${quoteApi}/currencies`,
+    getFxRate: `${quoteApi}/fx-rate`
+  }
+}
+```
+
 ### Implement polling mechanism
 
 - we want to simulate the real-time behavior for getting the transactions. This is the reason why we implement polling mechanism and using fetch API:
 
 ```Javascript
+import React, { Component } from 'react';
+import { Transaction } from '../models/transaction';
+import { backendUrl } from '../constants';
+
+interface Props {
+}
+
+interface State {
+    timer: number | null;
+    transactions: Transaction[];
+}
+
 class BlotterView extends Component<Props, State> {
     state = {
         timer: null,
         transactions: [],
     }
-    timer = null;
     componentDidMount() {
         this.setState({ timer: window.setInterval(() => this.getTransactions(), 2000) });
     }
@@ -263,7 +300,7 @@ class BlotterView extends Component<Props, State> {
     }
 
     getTransactions() {
-        fetch("http://localhost:8210/transactions")
+        fetch("backendUrl.fxTradeService.getTransactions")
             .then(response => response.json())
             .then(transactions => {
                 // Add currency pairs to transactions
@@ -404,5 +441,3 @@ export class Widget {
   ) {}
 }
 ```
-
-### Widget component

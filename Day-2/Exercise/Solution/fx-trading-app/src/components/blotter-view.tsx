@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import { Transaction } from '../models/transaction';
+import { backendUrl } from '../constants';
 
 import './../styles/blotter-view.css'
 
 interface Props {
 }
+
 interface State {
     timer: number | null;
     transactions: Transaction[];
-
 }
+
 class BlotterView extends Component<Props, State> {
     state = {
         timer: null,
         transactions: [],
     }
-    timer = null;
     componentDidMount() {
         this.setState({ timer: window.setInterval(() => this.getTransactions(), 1000) });
     }
@@ -24,7 +25,7 @@ class BlotterView extends Component<Props, State> {
     }
 
     getTransactions() {
-        fetch("http://localhost:8210/transactions")
+        fetch(backendUrl.fxTradeService.getTransactions)
             .then(response => response.json())
             .then(transactions => {
                 // Add currency pairs to transactions
