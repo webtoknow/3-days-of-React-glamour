@@ -36,7 +36,7 @@ class BlotterView extends Component<Props, State> {
 
     render() {
         const transactionsList = this.state.transactions.map((trade: Transaction) =>
-            <tr key={trade.username + trade.date}>
+            <tr key={trade.id}>
                 <td>{trade.id}</td>
                 <td>{trade.username}</td>
                 <td>{trade.ccyPair}</td>
