@@ -36,7 +36,18 @@ class FxRatesView extends Component<Props, State> {
     }
 
     onDeleteWidget = (index: number) => {
-        this.setState({ widgets: this.state.widgets.splice(index, 1) });
+        const newWidgets = this.state.widgets.filter((widgets, i) => i !== index);
+        this.setState({ widgets: [...newWidgets] });
+    }
+
+    onEditWidget = (newWidget: WidgetModel, index: number) => {
+        const newWidgets = this.state.widgets.map((widget, i) => {
+            if (index === i) {
+                return newWidget
+            }
+            return widget
+        });
+        this.setState({ widgets: [...newWidgets] });
     }
 
     render() {
@@ -48,6 +59,7 @@ class FxRatesView extends Component<Props, State> {
                 widget={widget}
                 currencies={currencies}
                 onDelete={this.onDeleteWidget}
+                onEditWidget={this.onEditWidget}
             >
             </Widget>
         ));
