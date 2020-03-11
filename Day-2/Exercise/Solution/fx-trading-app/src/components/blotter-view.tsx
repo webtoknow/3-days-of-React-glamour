@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { fromUnixTime, format } from 'date-fns'
 import { Transaction } from '../models/transaction';
 import { backendUrl } from '../constants';
 
@@ -44,7 +45,7 @@ class BlotterView extends Component<Props, State> {
                 <td>{trade.action}</td>
                 <td>{trade.notional}</td>
                 <td>{trade.tenor}</td>
-                <td>{trade.date}</td>
+                <td>{format(fromUnixTime(trade.date / 1000), "dd-MM-yyyy HH:mm")}</td>
             </tr>
         )
         return (

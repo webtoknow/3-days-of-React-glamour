@@ -251,7 +251,7 @@ export interface Transaction {
 
 ### Constants file
 
-- to have all backend URLs in one place we need to create a *constants.tsx* file in */src*:
+- to have all backend URLs in one place we need to create a _constants.tsx_ file in _/src_:
 
 ```Javascript
 export const authApi = 'http://localhost:8200'
@@ -344,7 +344,7 @@ render() {
             <td>{trade.action}</td>
             <td>{trade.notional}</td>
             <td>{trade.tenor}</td>
-            <td>{trade.date}</td>
+            <td>{format(fromUnixTime(trade.date / 1000), "dd-MM-yyyy HH:mm")}</td>
         </tr>
     )
     return (
@@ -521,7 +521,7 @@ export default FxRatesView
 
 so, as we can see:
 
-- we are fetching currencies pairs from *Quote Service*
+- we are fetching currencies pairs from _Quote Service_
 - we use Widget Component to render all widgets and pass index, currencies and onDelete as props
 - we have the possibility to add a new widget by clicking on "+" button
 - when a new widget is added, a new Widget component is created with default/empty values
