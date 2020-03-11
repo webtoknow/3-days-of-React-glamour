@@ -15,7 +15,7 @@ interface State {
 }
 
 class FxRatesView extends Component<Props, State> {
- 
+
     state = {
         widgets: [],
         currencies: []
@@ -31,7 +31,7 @@ class FxRatesView extends Component<Props, State> {
             .then(currencies => this.setState({ currencies }));
     }
 
-    onAddWidget = () =>  {
+    onAddWidget = () => {
         this.setState({ widgets: [...this.state.widgets, new WidgetModel('', '', 0, 0, null, '', true)] });
     }
 
@@ -40,9 +40,9 @@ class FxRatesView extends Component<Props, State> {
     }
 
     render() {
-        const { currencies, widgets } =  this.state
-        const widgetList = widgets.map( (widget, index) => (
-            <Widget 
+        const { currencies, widgets } = this.state
+        const widgetList = widgets.map((widget, index) => (
+            <Widget
                 key={index}
                 index={index}
                 widget={widget}

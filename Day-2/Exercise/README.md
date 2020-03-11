@@ -482,7 +482,7 @@ class FxRatesView extends Component<Props, State> {
         .then(currencies => this.setState({ currencies }));
   }
 
-  onAddWidget = () =>  {
+  onAddWidget = () => {
     this.setState({ widgets: [...this.state.widgets, new WidgetModel('', '', 0, 0, null, '', true)] });
   }
 
