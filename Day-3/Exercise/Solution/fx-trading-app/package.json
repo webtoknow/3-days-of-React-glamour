@@ -14,11 +14,13 @@
     "bootstrap": "^4.4.1",
     "cogo-toast": "^4.2.3",
     "date-fns": "^2.10.0",
+    "formik": "^2.1.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "yup": "^0.28.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/yup": "^0.26.32"
   }
 }

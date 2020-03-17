@@ -5,6 +5,9 @@
 - [Exercise 0 - Configuration](#exercise-0---configuration)
   - [Download all npm dependencies](#download-all-npm-dependencies)
   - [Configure Mock Server](#configure-mock-server)
+- [Exercise 1 - Register page](#exercise-1---register-page)
+  - [User model](#user-model)
+  - [Install Formik](#install-formik)
 
 ## Exercise 0 - Configuration
 
@@ -55,6 +58,7 @@ npm start
   - username
   - email
   - password
+  - confirmPassword
 - create a new file *user.tsx* into *fx-trading-app\src\models* containing the fields above:
 
 ```JavaScript
@@ -63,5 +67,19 @@ export interface User {
     username: string;
     email: string
     password: string;
+    confirmPassword?: string;
 }
+```
+
+### Install Formik
+
+- let's buid forms in React, without the tears by using [Formik](https://jaredpalmer.com/formik) and [Yup](https://github.com/jquense/yup):
+
+```javascript
+npm install formik --save
+```
+
+```javascript
+npm install -S yup
+npm install -S @types/yup
 ```
