@@ -45,3 +45,23 @@ npm start
   - `/transactions` - get all transactions
   - `/currencies` - get all currencies
   - `/fx-rate` - get fx rates for specific currencies
+
+## Exercise 1 - Register page
+
+### User model
+
+- by taking a look at the register page's design, we can identify the required fields for user entity:
+  - id
+  - username
+  - email
+  - password
+- create a new file *user.tsx* into *fx-trading-app\src\models* containing the fields above:
+
+```JavaScript
+export interface User {
+    id?: number;
+    username: string;
+    email: string
+    password: string;
+}
+```
