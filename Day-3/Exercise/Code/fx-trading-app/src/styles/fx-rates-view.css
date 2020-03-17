@@ -1,0 +1,25 @@
+.container-widget {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: 2rem;
+}
+
+.button-widget {
+    width: 47%;
+    height: 250px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.button-plus {
+    font-size: 60px;
+    color: grey;
+}
+
+@media only screen and (max-width: 1440px) {
+    .rate {
+        font-size: 26px;
+    }
+}
