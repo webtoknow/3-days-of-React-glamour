@@ -2,8 +2,6 @@
 
 ## Table of contents
 
-## Exercise 0 - Configuration
-
 - [Exercise 0 - Configuration](#exercise-0---configuration)
   - [Download all npm dependencies](#download-all-npm-dependencies)
   - [Install and use JSON Server](#install-and-use-json-server)
@@ -19,6 +17,8 @@
   - [Widget model](#widget-model)
   - [FX Rates View component](#fx-rates-view-component)
   - [Widget component](#widget-component)
+
+## Exercise 0 - Configuration
 
 ### Download all npm dependencies
 
@@ -527,7 +527,7 @@ so, as we can see:
 - we have the possibility to add a new widget by clicking on "+" button
 - when a new widget is added, a new Widget component is created with default/empty values
 - when a widget is removed, onDeleteWidget method is called, which uses the JavaScript splice method
-- don't forget to create _fx-rates0view.css_ and add the following styles:
+- don't forget to create _fx-rates-view.css_ and add the following styles:
 
 ```CSS
 .container-widget {
