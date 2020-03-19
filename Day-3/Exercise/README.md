@@ -92,11 +92,11 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
+import cogoToast from 'cogo-toast';
 
 import { User } from './../models/user';
-import '../styles/register-page.css';
 import { backendUrl } from '../constants';
-import cogoToast from 'cogo-toast';
+import '../styles/register-page.css';
 
 const RegisterPage = () => {
   const history = useHistory();
@@ -348,4 +348,3 @@ export default RegisterPage;
     justify-content: flex-end;
 }
 ```
-
