@@ -5,3 +5,10 @@ export interface User {
     password: string;
     confirmPassword?: string;
 }
+
+export interface LoginResponse {
+    username?: string;
+    token?: string
+    message?: string;
+    status?: number;
+}
