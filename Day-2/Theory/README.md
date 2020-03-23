@@ -137,6 +137,7 @@
 - each component has several *lifecycle methods* that we can override to execute code at a particular time
 - the most common ones are:
 ![Common-lifecycle-methods](img/common_lifecycle_methods.png)
+(Source: [React lifecycle methods diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/))
   - *constructor(props)*
     - it is called before mounting
     - if our component is a subclass, we should first call *super()* or *super(props)*
