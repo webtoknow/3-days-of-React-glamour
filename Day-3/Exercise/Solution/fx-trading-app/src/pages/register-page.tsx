@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import cogoToast from 'cogo-toast';
 
-import { User } from './../models/user';
+import { User, LoginResponse } from './../models/user';
 import { backendUrl } from '../constants';
 import '../styles/register-page.css';
 
@@ -66,8 +66,8 @@ const RegisterPage = () => {
           cogoToast.success("Registration successful!", { position: 'top-right' });
           history.push('/');
         })
-        .catch((error: string) => {
-          cogoToast.error(error, { position: 'top-right' });
+        .catch((error: LoginResponse) => {
+          cogoToast.error(error.message, { position: 'top-right' });
         });
 
     },

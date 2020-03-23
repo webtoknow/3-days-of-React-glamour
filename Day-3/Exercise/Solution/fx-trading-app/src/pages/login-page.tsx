@@ -57,8 +57,8 @@ function LoginPage() {
             cogoToast.error(response.message, { position: 'top-right' });
           }
         })
-        .catch((error: string) => {
-          cogoToast.error(error, { position: 'top-right' });
+        .catch((error: LoginResponse) => {
+          cogoToast.error(error.message, { position: 'top-right' });
         });
 
     },
