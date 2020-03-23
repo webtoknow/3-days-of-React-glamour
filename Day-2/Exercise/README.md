@@ -110,7 +110,7 @@ h1,h2,h3,h4,h5,h6 {
   - _fx-rates-view_
   - _widget_
 
-![Components](https://raw.githubusercontent.com/WebToLearn/3-day-of-React-glamour/master/Design/img/components.png "Components")
+![Components](../../Day-1/Theory/img/components.png "Components")
 
 - create _components_ folder:
 
