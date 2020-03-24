@@ -224,7 +224,7 @@ class Widget extends Component<Props, State> {
               </div>
               <div className="form-inline form-inline-short form-group">
                 <label className="label-short">Tenor</label>
-                <select name="tenor" className="form-control" value={tenor} defaultValue={''} onChange={this.handleChangeTenor} required>
+                <select name="tenor" className="form-control" onChange={this.handleChangeTenor} required>
                   <option value="" disabled>Please select</option>
                   {tenors}
                 </select>
