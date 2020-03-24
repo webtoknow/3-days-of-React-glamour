@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import cogoToast from 'cogo-toast';
-import { WidgetModel } from "../models/widget";
-import { backendUrl } from "../constants";
+import axios, { AxiosResponse, AxiosError } from 'axios';
 
+import { WidgetModel } from "../models/widget";
+import { Rate } from "../models/rate";
+import { backendUrl } from "../constants";
 import '../styles/widget.css'
 
 interface Props {
@@ -48,21 +50,12 @@ class Widget extends Component<Props, State> {
         date: Math.round(new Date().getTime())
       }
 
-      fetch(backendUrl.fxTradeService.saveTransaction,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newTransactions),
-        }
-      )
-        .then(response => response.json())
+      axios.post(backendUrl.fxTradeService.saveTransaction, newTransactions)
         .then(() => {
           cogoToast.success("Transaction saved!", { position: 'top-right' });
         })
-        .catch(() => {
-          cogoToast.error('Server Error', { position: 'top-right' });
+        .catch((error: AxiosError) => {
+          cogoToast.error(error.message, { position: 'top-right' });
         });
     } else {
       cogoToast.error("Please fill in both Amount and Tenor!", { position: 'top-right' });
@@ -86,21 +79,12 @@ class Widget extends Component<Props, State> {
         date: Math.round(new Date().getTime())
       }
 
-      fetch(backendUrl.fxTradeService.saveTransaction,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newTransactions),
-        }
-      )
-        .then(response => response.json())
+      axios.post(backendUrl.fxTradeService.saveTransaction, newTransactions)
         .then(() => {
           cogoToast.success("Transaction saved!", { position: 'top-right' });
         })
-        .catch(() => {
-          cogoToast.error('Server Error', { position: 'top-right' });
+        .catch((error: AxiosError) => {
+          cogoToast.error(error.message, { position: 'top-right' });
         });
     } else {
       cogoToast.error("Please fill in both Amount and Tenor!", { position: 'top-right' });
@@ -109,20 +93,20 @@ class Widget extends Component<Props, State> {
 
   startPolling() {
     const { primaryCcy, secondaryCcy } = this.props.widget;
-    this.setState({ timer: window.setInterval(() => this.getFxRate(primaryCcy, secondaryCcy), 10000) });
+    this.setState({ timer: window.setInterval(() => this.getFxRate(primaryCcy, secondaryCcy), 1000) });
   }
 
   getFxRate(primaryCcy: string, secondaryCcy: string) {
-    fetch(backendUrl.quoteService.getFxRate)
-      .then(response => response.json())
-      .then((fxRates) => {
+    axios.get(backendUrl.quoteService.getFxRate, { params: { primaryCcy, secondaryCcy } })
+      .then((response: AxiosResponse) => {
+        const fxRates: Rate = response.data;
         this.setState({ buyRateTrend: this.props.widget.buyRate > fxRates.buyRate ? 'down' : 'up' });
         this.setState({ sellRateTrend: this.props.widget.sellRate > fxRates.sellRate ? 'down' : 'up' });
 
         this.props.onEditWidget({ ...this.props.widget, buyRate: fxRates.buyRate, sellRate: fxRates.sellRate }, this.props.index);
       })
-      .catch(() => {
-        cogoToast.error('Server Error', { position: 'top-right' });
+      .catch((error: AxiosError) => {
+        cogoToast.error(error.message, { position: 'top-right' });
       });
   }
 
@@ -224,7 +208,7 @@ class Widget extends Component<Props, State> {
               </div>
               <div className="form-inline form-inline-short form-group">
                 <label className="label-short">Tenor</label>
-                <select name="tenor" className="form-control" onChange={this.handleChangeTenor} required>
+                <select name="tenor" className="form-control" value={tenor} onChange={this.handleChangeTenor} required>
                   <option value="" disabled>Please select</option>
                   {tenors}
                 </select>

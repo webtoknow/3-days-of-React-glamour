@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import cogoToast from 'cogo-toast';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
-import { WidgetModel, FxRatesResponse } from "../models/widget";
+import { WidgetModel } from "../models/widget";
 import { backendUrl } from "../constants";
 import '../styles/widget.css'
+import { Rate } from "../models/rate";
 
 interface Props {
   index: number;
@@ -98,7 +99,7 @@ class Widget extends Component<Props, State> {
   getFxRate(primaryCcy: string, secondaryCcy: string) {
     axios.get(backendUrl.quoteService.getFxRate, { params: { primaryCcy, secondaryCcy } })
       .then((response: AxiosResponse) => {
-        const fxRates: FxRatesResponse = response.data;
+        const fxRates: Rate = response.data;
         this.setState({ buyRateTrend: this.props.widget.buyRate > fxRates.buyRate ? 'down' : 'up' });
         this.setState({ sellRateTrend: this.props.widget.sellRate > fxRates.sellRate ? 'down' : 'up' });
 

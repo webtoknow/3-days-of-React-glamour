@@ -9,8 +9,3 @@ export class WidgetModel {
     public pickCCYState: boolean
   ) {}
 }
-
-export interface FxRatesResponse {
-  buyRate: number;
-  sellRate: number;
-}
