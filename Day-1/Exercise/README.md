@@ -10,6 +10,7 @@
 - [Exercise 3 - Add font awesome](#exercise-3---add-font-awesome)
 - [Exercise 4 - Add boostrap and styles](#exercise-4---add-boostrap-and-styles)
 - [Exercise 5 - Add date packages](#exercise-5---add-date-packages)
+- [Exercise 6 - Add axios](#exercise-6---add-axios)
 
 ## Exercise 0 - Initial Setup
 
@@ -193,4 +194,12 @@ import "bootstrap/dist/css/bootstrap.css";
 ```bash
 npm install date-fns --save
 npm install react-datepicker --save
+```
+
+## Exercise 6 - Add Axios
+
+- install [Axios](https://github.com/axios/axios) for managing AJAX requests:
+
+```bash
+npm install axios--save
 ```
