@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import cogoToast from 'cogo-toast';
+import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
 
 import { backendUrl } from '../constants';
 import '../styles/login-page.css';
@@ -32,33 +33,51 @@ function LoginPage() {
     initialValues,
     onSubmit: (user) => {
  
-      fetch(backendUrl.authService.authenticate,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(user),
-        }
-      )
-        .then(response => response.json())
-        .then((response : LoginResponse) => {
-          // login successful if there's a jwt token in the response
-          if (response && response.token) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
+      axios.post(backendUrl.authService.authenticate, user)
+        .then((response : AxiosResponse) => {
+          const data: LoginResponse  =  response.data;
+          // Login successful if there's a jwt token in the response
+          if (data && data.token) {
+            // Store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(response));
             cogoToast.success("Login successful!", { position: 'top-right' });
-            // add interceptor
+           
+            // Add a request interceptor
+            axios.interceptors.request.use(
+              (config: AxiosRequestConfig) => {
+                // Add token before request is sent
+                config.headers["Authorization"] = `Bearer ${data.token}`;
+                return config;
+              },
+              error => {
+                Promise.reject(error);
+              }
+            );
+
+            // Add a response interceptor
+            axios.interceptors.response.use(
+              (response: AxiosResponse) => {
+                // If there is a 401 Unauthorized response the user is automatically logged out of the application.
+                if (response.status === 401) {
+                  localStorage.removeItem('currentUser');
+                  history.push('/');
+              }
+                return response;
+              },
+              error => {
+                Promise.reject(error);
+              }
+            );
           
             history.push('/dashboard');
           }
-
-          if (response.message) {
-            cogoToast.error(response.message, { position: 'top-right' });
-          }
         })
-        .catch((error: LoginResponse) => {
-          cogoToast.error(error.message, { position: 'top-right' });
+        .catch((error: AxiosError) => {
+          if (error.response?.status === 401) {
+            cogoToast.error(error.response.data.message, { position: 'top-right' });
+          } else {
+            cogoToast.error(error.message, { position: 'top-right' });
+          }
         });
 
     },

@@ -11,6 +11,9 @@
   - [Register component](#register-component)
 - [Exercise 2 - Login page](#exercise-2---login-page)
   - [Login component](#login-component)
+  - [Authentication guard](#authentication-guard)
+  - [Logout](#logout)
+  - [JWT Interceptor](#jwt-interceptor)
 
 ## Exercise 0 - Configuration
 
@@ -352,7 +355,7 @@ export default RegisterPage;
 
 ## Exercise 2 - Login page
 
-## Login component
+### Login component
 
 ```javascript
 import React from 'react';
@@ -360,6 +363,7 @@ import { useFormik } from 'formik';
 import { Link, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import cogoToast from 'cogo-toast';
+import axios, { AxiosResponse, AxiosError } from 'axios';
 
 import { backendUrl } from '../constants';
 import '../styles/login-page.css';
@@ -388,35 +392,31 @@ function LoginPage() {
   const formik = useFormik({
     initialValues,
     onSubmit: (user) => {
-
-      fetch(backendUrl.authService.authenticate,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(user),
-        }
-      )
-        .then(response => response.json())
-        .then((response : LoginResponse) => {
-          // login successful if there's a jwt token in the response
-          if (response && response.token) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
+ 
+      axios.post(backendUrl.authService.authenticate, user)
+        .then((response : AxiosResponse) => {
+          const data: LoginResponse  =  response.data;
+          // Login successful if there's a jwt token in the response
+          if (data && data.token) {
+            // Store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(response));
             cogoToast.success("Login successful!", { position: 'top-right' });
-            // add interceptor
+           
+            // TO DO: Add a request interceptor
+           
+            // TO DO: Add a response interceptor
 
             history.push('/dashboard');
           }
-
-          if (response.message) {
-            cogoToast.error(response.message, { position: 'top-right' });
-          }
         })
-        .catch((error: LoginResponse) => {
-          cogoToast.error(error.message, { position: 'top-right' });
+        .catch((error: AxiosError) => {
+          if (error.response?.status === 401) {
+            cogoToast.error(error.response.data.message, { position: 'top-right' });
+          } else {
+            cogoToast.error(error.message, { position: 'top-right' });
+          }
         });
+
     },
     validationSchema: validationSchema
   });
@@ -480,9 +480,17 @@ function LoginPage() {
 
   );
 }
-
 export default LoginPage;
 ```
+
+- we can notice here:
+  - we used formik to manage our form by adding:
+    - `initialValues`
+    - `onSubmit` function so we can fetch the server
+    - yup `validationSchema`
+  - in onSubmit function, if the form is valid, we send the user and password to server. If the request is successful, we will be redirected to Dashboard page. Else, we will display an error message.
+
+- page styles:
 
 ```CSS
 .container-center {
@@ -529,4 +537,110 @@ export default LoginPage;
     align-items: center;
     justify-content: flex-end;
 }
+```
+
+### Authentication guard
+
+- we need a method to allow the user to view some pages only if he is logged in
+- for this purpose, we will create a new private Route function into `App.tsx`. This function will be responsible to check if the user has access to view the pages. It will be possible by verifying if the currentUser property has been set on localStorage. If yes, the access is permitted, else, the user will be redirected to /login page:
+
+```Javascript
+import { RouteProps } from "react-router-dom";
+...
+
+// A wrapper for <Route> that redirects to the login
+// screen if you're not yet authenticated.
+function PrivateRoute({ children, ...rest }: RouteProps) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        localStorage.getItem('currentUser') ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
+function App() {
+  return (
+    <Router>
+        ...
+        <PrivateRoute path="/dashboard">
+          <DashboardPage />
+        </PrivateRoute>
+        ...
+    </Router>
+  );
+}
+```
+- this means that dashboard will be private and if the user is not logged in, (s)he will be redirected to /login
+
+### Logout
+
+- we also need to logout and for this we need to update the `dashboard-page.tsx` component with logout function
+- logout method will remove the currentUser property from localStorage
+
+```Javascript
+import { useHistory } from 'react-router-dom';
+...
+
+function DashboardPage() {
+
+  const history = useHistory();
+  const logout = () => {
+    localStorage.removeItem('currentUser');
+    history.push('/');
+  }
+
+  return (
+    <div>
+        ...
+          <button className="btn btn-logout" onClick={logout}>Log out</button>
+      ...
+  );
+}
+```
+
+## JWT Interceptor
+
+- our interceptor will be responsible for:
+   - intercepting HTTP requests from the application to add a JWT auth token to the Authentication header if the user is logged in
+   - intercepting HTTP responses from server and check if status is eqal to 401, that means the user is not authorized to view the response, so he will be logged out
+
+```Javascript
+axios.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
+    // Add token before request is sent
+    config.headers["Authorization"] = `Bearer ${data.token}`;
+    return config;
+  },
+  error => {
+    Promise.reject(error);
+  }
+);
+```
+
+```Javascript
+axios.interceptors.response.use(
+  (response: AxiosResponse) => {
+    // If there is a 401 Unauthorized response the user is automatically logged out of the application.
+    if (response.status === 401) {
+      localStorage.removeItem('currentUser');
+      history.push('/');
+  }
+    return response;
+  },
+  error => {
+    Promise.reject(error);
+  }
+);
 ```

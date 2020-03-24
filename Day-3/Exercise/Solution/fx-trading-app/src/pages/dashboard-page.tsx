@@ -1,15 +1,22 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+
 import FxRatesView from '../components/fx-rates-view';
 import BlotterView from '../components/blotter-view';
 import '../styles/dashboard-page.css';
 
 function DashboardPage() {
+  const history = useHistory();
+  const logout = () => {
+    localStorage.removeItem('currentUser');
+    history.push('/');
+  }
   return (
     <div>
       <header>
         <nav className="navbar">
           <img className="fx-main-logo" alt="fx-main-logo" src="./img/logo-main.svg" />
-          <button className="btn btn-logout">Log out</button>
+          <button className="btn btn-logout" onClick={logout}>Log out</button>
         </nav>
       </header>
 
