@@ -277,12 +277,18 @@ export const backendUrl = {
 
 ### Implement polling mechanism
 
-- we want to simulate the real-time behavior for getting the transactions. This is the reason why we implement polling mechanism and using fetch API:
+- we want to simulate the real-time behavior for getting the transactions. This is the reason why we implement polling mechanism and using fetch API in `BlotterView` component:
 
 ```Javascript
 import React, { Component } from 'react';
+import { fromUnixTime, format } from 'date-fns'
+
+import cogoToast from 'cogo-toast';
+import axios, { AxiosResponse, AxiosError } from 'axios';
+
 import { Transaction } from '../models/transaction';
 import { backendUrl } from '../constants';
+import './../styles/blotter-view.css'
 
 interface Props {
 }
@@ -293,34 +299,37 @@ interface State {
 }
 
 class BlotterView extends Component<Props, State> {
-    state = {
-        timer: null,
-        transactions: [],
-    }
-    componentDidMount() {
-        this.setState({ timer: window.setInterval(() => this.getTransactions(), 2000) });
-    }
-    componentWillUnmount() {
-        this.setState({ timer: null });
-    }
+  state = {
+    timer: null,
+    transactions: [],
+  }
+  componentDidMount() {
+    this.setState({ timer: window.setInterval(() => this.getTransactions(), 1000) });
+  }
+  componentWillUnmount() {
+    window.clearInterval(this.state.timer || 0)
+  }
 
-    getTransactions() {
-        fetch("backendUrl.fxTradeService.getTransactions")
-            .then(response => response.json())
-            .then(transactions => {
-                // Add currency pairs to transactions
-                const transactionsWithCcyPair: Transaction[] = transactions.map((transaction: Transaction) => ({ ...transaction, ccyPair: `${transaction.primaryCcy}/${transaction.secondaryCcy}` }));
-                this.setState({ transactions: transactionsWithCcyPair });
-            });
-    }
+  getTransactions() {
+    axios.get(backendUrl.fxTradeService.getTransactions)
+      .then((response: AxiosResponse) => {
+        const transactions = response.data;
+        // Add currency pairs to transactions
+        const transactionsWithCcyPair: Transaction[] = transactions.map((transaction: Transaction) => ({ ...transaction, ccyPair: `${transaction.primaryCcy}/${transaction.secondaryCcy}` }));
+        this.setState({ transactions: transactionsWithCcyPair });
+      })
+      .catch((error: AxiosError) => {
+        cogoToast.error(error.message, { position: 'top-right' });
+      });
+  }
 
-    render() {
-        return (
-            <div>
-                blotter view
-            </div >
-        )
-    }
+  render() {
+      return (
+          <div>
+              blotter view
+          </div >
+      )
+  }
 }
 ```
 
@@ -337,54 +346,54 @@ class BlotterView extends Component<Props, State> {
 ...
 render() {
     const transactionsList = this.state.transactions.map((trade: Transaction) =>
-        <tr key={trade.username + trade.date}>
-            <td>{trade.id}</td>
-            <td>{trade.username}</td>
-            <td>{trade.ccyPair}</td>
-            <td>{trade.rate}</td>
-            <td>{trade.action}</td>
-            <td>{trade.notional}</td>
-            <td>{trade.tenor}</td>
-            <td>{format(fromUnixTime(trade.date / 1000), "dd-MM-yyyy HH:mm")}</td>
-        </tr>
+      <tr key={trade.id}>
+        <td>{trade.id}</td>
+        <td>{trade.username}</td>
+        <td>{trade.ccyPair}</td>
+        <td>{trade.rate}</td>
+        <td>{trade.action}</td>
+        <td>{trade.notional}</td>
+        <td>{trade.tenor}</td>
+        <td>{format(fromUnixTime(trade.date / 1000), "dd-MM-yyyy HH:mm")}</td>
+      </tr>
     )
     return (
-        <div>
-            <div className="title title-border">
-                <h4>Blotter View</h4>
-            </div>
-            <div className="table-responsive">
-                <table className="table table-striped table-sm">
-                    <thead className="blotter-table-header">
-                        <tr>
-                            <th>ID</th>
-                            <th>
-                                <span>Username&nbsp;</span>
-                            </th>
-                            <th>
-                                <span>Ccy Pair&nbsp;</span>
-                            </th>
-                            <th>Rate</th>
-                            <th>
-                                <span>Action&nbsp;</span>
-                            </th>
-                            <th>
-                                <span>Notional&nbsp;</span>
-                            </th>
-                            <th>Tenor</th>
-                            <th>
-                                <span>Transaction Date&nbsp;</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {transactionsList}
-                    </tbody>
-                </table>
-            </div>
-        </div >
+      <div>
+        <div className="title title-border">
+          <h4>Blotter View</h4>
+        </div>
+        <div className="table-responsive">
+          <table className="table table-striped table-sm">
+            <thead className="blotter-table-header">
+              <tr>
+                <th>ID</th>
+                <th>
+                  <span>Username&nbsp;</span>
+                </th>
+                <th>
+                  <span>Ccy Pair&nbsp;</span>
+                </th>
+                <th>Rate</th>
+                <th>
+                  <span>Action&nbsp;</span>
+                </th>
+                <th>
+                  <span>Notional&nbsp;</span>
+                </th>
+                <th>Tenor</th>
+                <th>
+                  <span>Transaction Date&nbsp;</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactionsList}
+            </tbody>
+          </table>
+        </div>
+      </div >
     )
-}
+  }
 ```
 
 - here we display a table containing the following information from all transactions got from the backend:
@@ -425,7 +434,7 @@ import './../styles/blotter-view.css'
 export interface Rate {
     buyRate: number;
     sellRate: number;
-    ts: number;
+    ts?: number;
 }
 ```
 
@@ -452,7 +461,8 @@ export class WidgetModel {
 FX Rates View component is the left-side of the screen, containing all Widget Components:
 
 ```Javascript
-import React, { Component } from 'react'
+iimport React, { Component } from 'react'
+import axios, { AxiosResponse } from 'axios';
 import { WidgetModel } from '../models/widget'
 import { backendUrl } from '../constants';
 import Widget from './widget';
@@ -468,6 +478,7 @@ interface State {
 }
 
 class FxRatesView extends Component<Props, State> {
+
   state = {
     widgets: [],
     currencies: []
@@ -478,9 +489,8 @@ class FxRatesView extends Component<Props, State> {
   }
 
   getCurrencies() {
-    fetch(backendUrl.quoteService.getCurrencies)
-        .then(response => response.json())
-        .then(currencies => this.setState({ currencies }));
+    axios.get(backendUrl.quoteService.getCurrencies)
+      .then((response: AxiosResponse) => this.setState({ currencies: response.data }));
   }
 
   onAddWidget = () => {
@@ -488,7 +498,18 @@ class FxRatesView extends Component<Props, State> {
   }
 
   onDeleteWidget = (index: number) => {
-    this.setState({ widgets: this.state.widgets.splice(index, 1) });
+    const newWidgets = this.state.widgets.filter((widgets, i) => i !== index);
+    this.setState({ widgets: [...newWidgets] });
+  }
+
+  onEditWidget = (newWidget: WidgetModel, index: number) => {
+    const newWidgets = this.state.widgets.map((widget, i) => {
+      if (index === i) {
+        return newWidget
+      }
+      return widget
+    });
+    this.setState({ widgets: [...newWidgets] });
   }
 
   render() {
@@ -500,9 +521,10 @@ class FxRatesView extends Component<Props, State> {
         widget={widget}
         currencies={currencies}
         onDelete={this.onDeleteWidget}
+        onEditWidget={this.onEditWidget}
       >
       </Widget>
-  ));
+    ));
     return (
       <div>
         <h4 className="title">Fx Rates View</h4>
@@ -581,9 +603,11 @@ interface Props {
 ```Javascript
 import React, { Component } from "react";
 import cogoToast from 'cogo-toast';
-import { WidgetModel } from "../models/widget";
-import { backendUrl } from "../constants";
+import axios, { AxiosResponse, AxiosError } from 'axios';
 
+import { WidgetModel } from "../models/widget";
+import { Rate } from "../models/rate";
+import { backendUrl } from "../constants";
 import '../styles/widget.css'
 
 interface Props {
@@ -629,21 +653,12 @@ class Widget extends Component<Props, State> {
         date: Math.round(new Date().getTime())
       }
 
-      fetch(backendUrl.fxTradeService.saveTransaction,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newTransactions),
-        }
-      )
-        .then(response => response.json())
+      axios.post(backendUrl.fxTradeService.saveTransaction, newTransactions)
         .then(() => {
           cogoToast.success("Transaction saved!", { position: 'top-right' });
         })
-        .catch(() => {
-          cogoToast.error('Server Error', { position: 'top-right' });
+        .catch((error: AxiosError) => {
+          cogoToast.error(error.message, { position: 'top-right' });
         });
     } else {
       cogoToast.error("Please fill in both Amount and Tenor!", { position: 'top-right' });
@@ -667,21 +682,12 @@ class Widget extends Component<Props, State> {
         date: Math.round(new Date().getTime())
       }
 
-      fetch(backendUrl.fxTradeService.saveTransaction,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newTransactions),
-        }
-      )
-        .then(response => response.json())
+      axios.post(backendUrl.fxTradeService.saveTransaction, newTransactions)
         .then(() => {
           cogoToast.success("Transaction saved!", { position: 'top-right' });
         })
-        .catch(() => {
-          cogoToast.error('Server Error', { position: 'top-right' });
+        .catch((error: AxiosError) => {
+          cogoToast.error(error.message, { position: 'top-right' });
         });
     } else {
       cogoToast.error("Please fill in both Amount and Tenor!", { position: 'top-right' });
@@ -690,20 +696,20 @@ class Widget extends Component<Props, State> {
 
   startPolling() {
     const { primaryCcy, secondaryCcy } = this.props.widget;
-    this.setState({ timer: window.setInterval(() => this.getFxRate(primaryCcy, secondaryCcy), 10000) });
+    this.setState({ timer: window.setInterval(() => this.getFxRate(primaryCcy, secondaryCcy), 1000) });
   }
 
   getFxRate(primaryCcy: string, secondaryCcy: string) {
-    fetch(backendUrl.quoteService.getFxRate)
-      .then(response => response.json())
-      .then((fxRates) => {
+    axios.get(backendUrl.quoteService.getFxRate, { params: { primaryCcy, secondaryCcy } })
+      .then((response: AxiosResponse) => {
+        const fxRates: Rate = response.data;
         this.setState({ buyRateTrend: this.props.widget.buyRate > fxRates.buyRate ? 'down' : 'up' });
         this.setState({ sellRateTrend: this.props.widget.sellRate > fxRates.sellRate ? 'down' : 'up' });
 
         this.props.onEditWidget({ ...this.props.widget, buyRate: fxRates.buyRate, sellRate: fxRates.sellRate }, this.props.index);
       })
-      .catch(() => {
-        cogoToast.error('Server Error', { position: 'top-right' });
+      .catch((error: AxiosError) => {
+        cogoToast.error(error.message, { position: 'top-right' });
       });
   }
 
