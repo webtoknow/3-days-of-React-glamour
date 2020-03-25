@@ -42,7 +42,7 @@
 
 ## Why and how to split UI into components
 
-- there is no rule saying that it is forbidden to have only one component in our application, but :
+- there is no rule saying that it is forbidden to have only one component in our application, but:
   - performance will be affected because every state change will re-render the entire application
   - code reusability will not be easy
   - state will be a huge object and it will be a real challenge to follow the impact of event handlers
