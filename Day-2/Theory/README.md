@@ -440,3 +440,7 @@
         error => errorHandler(error)
     )
     ```
+
+> **Note**
+>
+> You can find more on [Axios GitHub repository](https://github.com/axios/axios).

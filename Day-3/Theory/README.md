@@ -114,7 +114,7 @@
 
 > **Note**
 >
-> You can find more documentation on [Formik official website](https://jaredpalmer.com/formik/docs/overview)
+> You can find more documentation on [Formik official website](https://jaredpalmer.com/formik/docs/overview).
 
 ## Yup
 
@@ -151,4 +151,4 @@
 
 > **Note**
 >
-> You can find more on [Yup GitHub repository](https://github.com/jquense/yup)
+> You can find more on [Yup GitHub repository](https://github.com/jquense/yup).
