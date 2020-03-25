@@ -14,6 +14,7 @@
   - [Authentication guard](#authentication-guard)
   - [Logout](#logout)
   - [JWT Interceptor](#jwt-interceptor)
+- [Exercise 3 - Not found page](#exercise-3---not-found-page)
 
 ## Exercise 0 - Configuration
 
@@ -643,4 +644,91 @@ axios.interceptors.response.use(
     Promise.reject(error);
   }
 );
+```
+
+- if the user access a route that does not exist, we should display a page containing the *Page not found* message
+
+- **not-found-page.component.html**:
+
+    ```HTML
+    <div class="screen-full-height fx-not-found-container">
+        <img class="fx-not-found-logo" alt="fx-not-found-logo" src="./assets/img/error_404.png">
+        <div class="fx-not-found-text">Sorry, the page you are looking for does not exist.</div>
+    </div>
+    ```
+
+- in this page, we display:
+  - an image with *404 Not found page* message
+  - an appropriate message
+
+- **not-found-page.component.css**:
+
+    ```CSS
+    .fx-not-found-container {
+        background-color: rgb(141,213,170);
+        padding-top: 120px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .fx-not-found-logo {
+        margin-bottom: 40px;
+        width: 395px;
+    }
+
+    .fx-not-found-text {
+        font-size: 16px;
+        color: #7C7C7C;
+        margin-left: 60px;
+    }
+    ```
+
+## Exercise 3 - Not found page
+
+- if the user access a route that does not exist, we should display a page containing the *Page not found* message:
+- **not-found-page.component.html**:
+
+```Javascript
+import React from 'react';
+import '../styles/not-found-page.css';
+
+function NotFoundPage() {
+  return (
+    <div>
+      <div className="screen-full-height fx-not-found-container">
+        <img className="fx-not-found-logo" alt="fx-not-found-logo" src="./img/error_404.png" />
+        <div className="fx-not-found-text">Sorry, the page you are looking for does not exist.</div>
+      </div>
+    </div>
+  );
+}
+
+export default NotFoundPage;
+```
+
+- in this page, we display:
+  - an image with *404 Not found page* message
+  - an appropriate message
+
+- please update the style in `not-found-page.css` for a nice layout:
+```CSS
+.fx-not-found-container {
+    background-color: rgb(141,213,170);
+    padding-top: 120px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fx-not-found-logo {
+    margin-bottom: 40px;
+    width: 395px;
+}
+
+.fx-not-found-text {
+    font-size: 16px;
+    color: #7C7C7C;
+    margin-left: 60px;
+}
 ```
