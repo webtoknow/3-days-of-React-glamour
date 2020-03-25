@@ -11,6 +11,7 @@
   - [Hooks](#hooks)
     - [State Hook](#state-hook)
     - [Effect Hook](#effect-hook)
+- [HTTP Requests via axios](#http-requests-via-axios)
 
 ## State
 
@@ -368,3 +369,74 @@
             return <h1>Hello World</h1>;
         };
         ```
+
+## HTTP Requests via axios
+
+- in our applications we need to retrieve data from external APIs so we can display them in the UI
+- we have many options to do this (two of the most common used ones are *Fetch API* or *axios*)
+- Fetch is very capable, but it has some limitations
+- axios is used more often than Fetch because it has a larger set of features and supports older browsers
+- we can install it using the npm command:
+
+    ```bash
+    npm install axios
+    ```
+
+- axios is based on *$http* service within AngularJS
+- it uses *Promises*, so it works with the same mechanism of async and await
+- axios uses methods like *get()* and *post()* for GET and POST requests:
+
+    ```JavaScript
+        axios.get('/user', params: {id: 1})
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    ```
+
+    ```JavaScript
+        axios.post('/user', {
+            firstName: 'Andrei',
+            lastName: 'Popescu'
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    ```
+
+- as we have already learned, the best way to load external data in React is inside *componentDidMount*:
+
+    ```JavaScript
+    componentDidMount() {
+        axios.get('http://localhost:3333/items')
+            .then(response => this.setState({items: response.data}))
+            .catch(error => console.log(error))
+    }
+    ```
+
+- with axios, we can also intercept requests or responses before they are handled by *then* or *catch*:
+
+    ```JavaScript
+    // Add a request interceptor
+    axios.interceptors.request.use(
+        // Do something before the request is sent
+        request => requestHandler(request)
+    );
+    ```
+
+    ```JavaScript
+    // Add a response interceptor
+    axios.interceptors.response.use(
+        // Any status code that lie within the range of 2xx cause this function to trigger
+        // Do something with response data
+        response => successHandler(response),
+        // Any status codes that falls outside the range of 2xx cause this function to trigger
+        // Do something with response error
+        error => errorHandler(error)
+    )
+    ```
