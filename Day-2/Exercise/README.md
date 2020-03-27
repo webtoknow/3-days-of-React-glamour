@@ -601,7 +601,7 @@ cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
 
 ### Widget component
 
-- in Widget component we can notice:
+- in `Widget` component we can notice:
 
   - a widget can be deleted by pressing the close icon from top-right corner of it
   - there are 2 types of widgets:
@@ -648,7 +648,7 @@ cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
       const { notional, tenor, primaryCcy, secondaryCcy, sellRate } = this.props.widget;
       if (notional && tenor) {
         const username: string = JSON.parse(
-          localStorage.getItem("currentUser") || "{}"
+          localStorage.getItem('currentUser') || '{}'
         ).username;
 
         const newTransactions = {
@@ -656,7 +656,7 @@ cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
           primaryCcy,
           secondaryCcy,
           rate: sellRate,
-          action: "SELL",
+          action: 'SELL',
           notional,
           tenor,
           date: Math.round(new Date().getTime())
@@ -664,20 +664,20 @@ cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
 
         axios.post(backendUrl.fxTradeService.saveTransaction, newTransactions)
           .then(() => {
-            cogoToast.success("Transaction saved!", { position: 'top-right' });
+            cogoToast.success('Transaction saved!', { position: 'top-right' });
           })
           .catch((error: AxiosError) => {
             cogoToast.error(error.message, { position: 'top-right' });
           });
       } else {
-        cogoToast.error("Please fill in both Amount and Tenor!", { position: 'top-right' });
+        cogoToast.error('Please fill in both Amount and Tenor!', { position: 'top-right' });
       }
     }
     onBuy = () => {
       const { notional, tenor, primaryCcy, secondaryCcy, sellRate } = this.props.widget;
       if (notional && tenor) {
         const username: string = JSON.parse(
-          localStorage.getItem("currentUser") || "{}"
+          localStorage.getItem('currentUser') || '{}'
         ).username;
 
         const newTransactions = {
@@ -685,7 +685,7 @@ cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
           primaryCcy,
           secondaryCcy,
           rate: sellRate,
-          action: "BUY",
+          action: 'BUY',
           notional,
           tenor,
           date: Math.round(new Date().getTime())
@@ -693,13 +693,13 @@ cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
 
         axios.post(backendUrl.fxTradeService.saveTransaction, newTransactions)
           .then(() => {
-            cogoToast.success("Transaction saved!", { position: 'top-right' });
+            cogoToast.success('Transaction saved!', { position: 'top-right' });
           })
           .catch((error: AxiosError) => {
             cogoToast.error(error.message, { position: 'top-right' });
           });
       } else {
-        cogoToast.error("Please fill in both Amount and Tenor!", { position: 'top-right' });
+        cogoToast.error('Please fill in both Amount and Tenor!', { position: 'top-right' });
       }
     }
 
