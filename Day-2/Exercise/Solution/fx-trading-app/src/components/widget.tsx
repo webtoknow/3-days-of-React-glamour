@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import cogoToast from 'cogo-toast';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
-import { WidgetModel } from "../models/widget";
-import { Rate } from "../models/rate";
-import { backendUrl } from "../constants";
+import { WidgetModel } from '../models/widget';
+import { Rate } from '../models/rate';
+import { backendUrl } from '../constants';
 import '../styles/widget.css'
 
 interface Props {
