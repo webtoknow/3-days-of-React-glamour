@@ -9,7 +9,7 @@
 - [Exercise 2 - Update favicon](#exercise-2---update-favicon)
 - [Exercise 3 - Add font awesome](#exercise-3---add-font-awesome)
 - [Exercise 4 - Add bootstrap and styles](#exercise-4---add-bootstrap-and-styles)
-- [Exercise 5 - Add date packages](#exercise-5---add-date-packages)
+- [Exercise 5 - Add date package](#exercise-5---add-date-package)
 - [Exercise 6 - Add axios](#exercise-6---add-axios)
 
 ## Exercise 0 - Initial Setup
@@ -188,13 +188,12 @@
   @import-normalize;
   ```
 
-## Exercise 5 - Add date packages
+## Exercise 5 - Add date package
 
-- install the following packages for manipulating dates:
+- install the following package for manipulating dates:
 
   ```bash
   npm install date-fns --save
-  npm install react-datepicker --save
   ```
 
 ## Exercise 6 - Add Axios
