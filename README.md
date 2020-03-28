@@ -46,7 +46,7 @@ You can find all design specifications in
 
 ### Dashboard
 
-![Dashboard](Design/img/Dashboard-VD.png "Dashboard")
+![Dashboard](Design/img/Dashboard-VD-No-Filters.png "Dashboard")
 
 ### Not Found
 
