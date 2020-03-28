@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import cogoToast from 'cogo-toast';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
-import { WidgetModel } from "../models/widget";
-import { backendUrl } from "../constants";
+import { WidgetModel } from '../models/widget';
+import { backendUrl } from '../constants';
 import '../styles/widget.css'
-import { Rate } from "../models/rate";
+import { Rate } from '../models/rate';
 
 interface Props {
   index: number;

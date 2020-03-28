@@ -6,7 +6,7 @@ export interface User {
     confirmPassword?: string;
 }
 
-export interface LoginResponse {
+export interface AuthResponse {
     username?: string;
     token?: string
     message?: string;

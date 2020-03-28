@@ -236,7 +236,7 @@
     BrowserRouter as Router,
     Switch,
     Route,
-    } from "react-router-dom";
+    } from 'react-router-dom';
 
     import DashboardPage from './pages/dashboard-page';
     import NotFoundPage from './pages/not-found-page';

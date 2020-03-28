@@ -7,7 +7,7 @@ import axios, { AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
 
 import { backendUrl } from '../constants';
 import '../styles/login-page.css';
-import { LoginResponse } from '../models/user';
+import { AuthResponse } from '../models/user';
 
 function LoginPage() {
   const history = useHistory();
@@ -35,7 +35,7 @@ function LoginPage() {
  
       axios.post(backendUrl.authService.authenticate, user)
         .then((response : AxiosResponse) => {
-          const data: LoginResponse  =  response.data;
+          const data: AuthResponse  =  response.data;
           // Login successful if there's a jwt token in the response
           if (data && data.token) {
             // Store user details and jwt token in local storage to keep user logged in between page refreshes

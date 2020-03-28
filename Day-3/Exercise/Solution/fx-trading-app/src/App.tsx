@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
   RouteProps,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 import LoginPage from './pages/login-page';
 import RegisterPage from './pages/register-page';
