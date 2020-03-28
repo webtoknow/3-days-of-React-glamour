@@ -8,6 +8,7 @@
 - [Virtual DOM](#virtual-dom)
 - [Rendering Elements](#rendering-elements)
 - [Handling Events](#handling-events)
+- [Manipulating Dates](#manipulating-dates)
 - [Routes and Navigation](#routes-and-navigation)
 
 ## Introduction and Architecture
@@ -222,6 +223,42 @@
     <!-- e,the React event, is passed implicitly so we should not provide it -->
     <button onClick={this.updateRow.bind(this,id)}>Update Row</button>
     ```
+
+## Manipulating Dates
+
+- in JavaScript, handling dates and timezones can be a really challenging task
+- that is how date libraries appeared
+- they simplify date parsing, arithmetic and logical operations, date formatting
+- *date-fns* is one of these libraries which helps us a lot with manipulating the dates
+- we have to install it via npm:
+
+    ```bash
+    npm install date-fns
+    ```
+
+- here we can see some examples of can we can use this library:
+
+    ```JavaScript
+    import { format, compareAsc, formatDistance, subDays } from 'date-fns'
+
+    format(new Date(2014, 1, 11), 'dd/??/yyyy')
+    //=> '11/02/2014'
+
+    const dates = [new Date(1995, 6, 2), new Date(1987, 1, 11), new Date(1989, 6, 10)]
+    dates.sort(compareAsc)
+    //=> [
+    //   Wed Feb 11 1987 00:00:00,
+    //   Mon Jul 10 1989 00:00:00,
+    //   Sun Jul 02 1995 00:00:00
+    // ]
+
+    formatDistance(subDays(new Date(), 3), new Date())
+    //=> "3 days ago"
+    ```
+
+> **Note**
+>
+> You can find more documentation on [Date Fns official website](https://date-fns.org/).
 
 ## Routes and Navigation
 

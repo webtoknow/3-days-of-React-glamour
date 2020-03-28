@@ -683,14 +683,21 @@
 
   ```Javascript
   import React from 'react';
+  import  { useHistory } from 'react-router-dom';
   import '../styles/not-found-page.css';
 
   function NotFoundPage() {
+    const history = useHistory();
+    const goToLogin = () => {
+      history.push('/');
+    }
+
     return (
       <div>
         <div className="screen-full-height fx-not-found-container">
           <img className="fx-not-found-logo" alt="fx-not-found-logo" src="./img/error_404.png" />
           <div className="fx-not-found-text">Sorry, the page you are looking for does not exist.</div>
+          <button className="btn btn-primary btn-block fx-not-found-go-login" onClick={goToLogin}>Go to Login</button>
         </div>
       </div>
     );
@@ -702,6 +709,7 @@
 - in this page, we will display:
   - a *404 Not found page* image
   - an appropriate message
+  - a button which redirects to the Login page
 
 - for a nice layout, you need to create the file *not-found-page.css* into *styles* folder and fill it with these styles:
 
@@ -723,5 +731,11 @@
       font-size: 16px;
       color: #7C7C7C;
       margin-left: 60px;
+  }
+
+  .fx-not-found-go-login {
+    margin-top: 20px;
+    margin-left: 50px;
+    width: 250px;
   }
   ```
