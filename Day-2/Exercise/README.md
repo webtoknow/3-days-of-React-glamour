@@ -304,6 +304,7 @@ cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
       transactions: [],
     }
     componentDidMount() {
+      this.getTransactions();
       this.setState({ timer: window.setInterval(() => this.getTransactions(), 1000) });
     }
     componentWillUnmount() {
@@ -705,6 +706,7 @@ cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
 
     startPolling() {
       const { primaryCcy, secondaryCcy } = this.props.widget;
+      this.getFxRate(primaryCcy, secondaryCcy);
       this.setState({ timer: window.setInterval(() => this.getFxRate(primaryCcy, secondaryCcy), 1000) });
     }
 

@@ -22,6 +22,7 @@ class BlotterView extends Component<Props, State> {
     transactions: [],
   }
   componentDidMount() {
+    this.getTransactions();
     this.setState({ timer: window.setInterval(() => this.getTransactions(), 1000) });
   }
   componentWillUnmount() {

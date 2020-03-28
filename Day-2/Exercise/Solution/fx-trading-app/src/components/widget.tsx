@@ -93,6 +93,7 @@ class Widget extends Component<Props, State> {
 
   startPolling() {
     const { primaryCcy, secondaryCcy } = this.props.widget;
+    this.getFxRate(primaryCcy, secondaryCcy);
     this.setState({ timer: window.setInterval(() => this.getFxRate(primaryCcy, secondaryCcy), 1000) });
   }
 

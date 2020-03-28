@@ -163,6 +163,7 @@
 
         ```JavaScript
         componentDidMount() {
+            this.getDogs();
             this.setState({ timer: window.setInterval(() => this.getDogs(), 1000) });
         }
 
