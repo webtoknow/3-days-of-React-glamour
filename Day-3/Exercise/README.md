@@ -734,6 +734,7 @@
   }
 
   .fx-not-found-go-login {
+    margin-top: 20px;
     margin-left: 50px;
     width: 250px;
   }
