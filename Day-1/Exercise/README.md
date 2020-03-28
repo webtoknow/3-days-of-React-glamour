@@ -124,7 +124,7 @@
 ## Exercise 2 - Update favicon
 
 - let's update favicon by first deleting logo files from _src_ and _public_ folders
-- download [fav icon package](https://github.com//WebToLearn/3-day-of-React-glamour/raw/master/Design/fx-trading-favicon-package.zip) and unzip it, then copy and replace all files to _public_ folder
+- download [fav icon package](https://github.com//WebToLearn/3-days-of-React-glamour/raw/master/Design/fx-trading-favicon-package.zip) and unzip it, then copy and replace all files to _public_ folder
 - replace the following code in the *head* section of _public/index.html_ file with:
 
   ```html
