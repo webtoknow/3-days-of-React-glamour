@@ -5,7 +5,6 @@
 - [Exercise 0 - Configuration](#exercise-0---configuration)
   - [Download all npm dependencies](#download-all-npm-dependencies)
   - [Install and use JSON Server](#install-and-use-json-server)
-  - [Add global styles](#add-global-styles)
 - [Exercise 1 - Create blotter-view, fx-rates-view and widget components](#exercise-1---create-blotter-view-fx-rates-view-and-widget-components)
 - [Exercise 2 - Blotter View section](#exercise-2---blotter-view-section)
   - [Transaction model](#transaction-model)
@@ -50,56 +49,6 @@ cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
   ```bash
   json-server --watch db.trade.json --port 8210
   json-server --watch db.quote.json --port 8220
-  ```
-
-### Add global styles
-
-- add the following styles to _index.css_ file:
-
-  ```CSS
-  @import-normalize;
-
-  html, body{
-    height: 100%;
-    color: #373A3C;
-  }
-
-  h1,h2,h3,h4,h5,h6 {
-    color: #7C7C7C;
-  }
-
-  .btn-primary {
-    background-color: #3496F0;
-  }
-
-  .btn-link {
-    color: #3496F0;
-  }
-  .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #F2F2F2;
-  }
-
-  .flex {
-    display: flex;
-  }
-
-  .flex-vertical-centered {
-    display: flex;
-    align-items: center;
-  }
-
-  .title {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-  }
-
-  .title-border {
-    border-bottom: 1px solid #DDDDDD;
-  }
-
-  .screen-full-height {
-    height: 100vh;
-  }
   ```
 
 ## Exercise 1 - Create blotter-view, fx-rates-view and widget components

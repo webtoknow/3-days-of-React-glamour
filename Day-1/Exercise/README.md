@@ -7,10 +7,11 @@
   - [Create pages](#create-pages)
   - [Add routes using React Router](#add-routes-using-react-router)
 - [Exercise 2 - Update favicon](#exercise-2---update-favicon)
-- [Exercise 3 - Add font awesome](#exercise-3---add-font-awesome)
-- [Exercise 4 - Add bootstrap and styles](#exercise-4---add-bootstrap-and-styles)
-- [Exercise 5 - Add date package](#exercise-5---add-date-package)
-- [Exercise 6 - Add axios](#exercise-6---add-axios)
+- [Exercise 3 - Add global styles](#exercise-3---add-global-styles)
+- [Exercise 4 - Add Fontawesome](#exercise-4---add-fontawesome)
+- [Exercise 5 - Add Bootstrap](#exercise-5---add-bootstrap)
+- [Exercise 6 - Add Date package](#exercise-6---add-date-package)
+- [Exercise 7 - Add Axios](#exercise-7---add-axios)
 
 ## Exercise 0 - Initial Setup
 
@@ -159,7 +160,57 @@
   <title>Fx trading app</title>
   ```
 
-## Exercise 3 - Add font awesome
+## Exercise 3 - Add global styles
+
+- add the following styles to _index.css_ file:
+
+  ```css
+  @import-normalize;
+
+    html, body{
+    height: 100%;
+    color: #373A3C;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    color: #7C7C7C;
+  }
+
+  .btn-primary {
+    background-color: #3496F0;
+  }
+
+  .btn-link {
+    color: #3496F0;
+  }
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #F2F2F2;
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .flex-vertical-centered {
+    display: flex;
+    align-items: center;
+  }
+
+  .title {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+  }
+
+  .title-border {
+    border-bottom: 1px solid #DDDDDD;
+  }
+
+  .screen-full-height {
+    height: 100vh;
+  }
+  ```
+
+## Exercise 4 - Add Fontawesome
 
 - also in *head* section we will add [Font Awesome](https://fontawesome.com/v4.7.0/) library:
 
@@ -167,9 +218,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
   ```
 
-## Exercise 4 - Add bootstrap and styles
+## Exercise 5 - Add Bootstrap
 
-- add bootstrap:
+- add Bootstrap:
 
   ```bash
   npm install --save bootstrap
@@ -182,13 +233,7 @@
   // Put any other imports below so that CSS from your components takes precedence over default styles.
   ```
 
-- clear and reset style into _src/index.css_:
-
-  ```css
-  @import-normalize;
-  ```
-
-## Exercise 5 - Add date package
+## Exercise 6 - Add Date package
 
 - install the following package for manipulating dates:
 
@@ -196,7 +241,7 @@
   npm install date-fns --save
   ```
 
-## Exercise 6 - Add Axios
+## Exercise 7 - Add Axios
 
 - install [Axios](https://github.com/axios/axios) for managing AJAX requests:
 
