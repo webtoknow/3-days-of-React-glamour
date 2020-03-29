@@ -47,7 +47,7 @@
 
 ### Configure Mock Server
 
-- it is used to create a fake API to mock the backend data and
+- it is used to create a fake API to mock the backend data
 - it is based on [JSON Server](https://github.com/typicode/json-server)
 - we will be able to start all microservices in the same time
 - let's install its packages:
