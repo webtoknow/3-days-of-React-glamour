@@ -2,6 +2,7 @@
 
 ## Table of contents
 
+- [General indications](#general-indications)
 - [Exercise 0 - Initial Setup](#exercise-0---initial-setup)
 - [Exercise 1 - Pages, Routing and Navigation](#exercise-1---pages-routing-and-navigation)
   - [Create pages](#create-pages)
@@ -12,239 +13,91 @@
 - [Exercise 5 - Add Bootstrap](#exercise-5---add-bootstrap)
 - [Exercise 6 - Add Date package](#exercise-6---add-date-package)
 - [Exercise 7 - Add Axios](#exercise-7---add-axios)
+- [Exercise 8 - Add Alerts package](#exercise-8---add-alerts-package)
+
+## General indications
+
+🔥 The working folder for this day will be _Day-1\Exercise\Code_.
+
+🔥 You can find the exercises solutions for this day at _Day-1\Exercise\Solution_.
+
+🔥 This rocket 🚀 will be followed by the statement of the exercise.
+
+🔥 To help you to code without too many tears, 🎁 means that we are providing some hints to you.
 
 ## Exercise 0 - Initial Setup
 
-- go to _Day-1\Exercise\Code_:
+🚀 Let's do the first step to build our first React application. We should start generating a new project with React and Typescript.
 
-  ```bash
-  cd 3-Days-of-React-glamour\Day-1\Exercise\Code
-  ```
+  🎁 One very easy method is to use [Create React App](https://create-react-app.dev/).
 
-- let's generate a new React project using [Create React App](https://create-react-app.dev/) with Typescript:
-
-  ```bash
-  npx create-react-app fx-trading-app --template typescript
-  ```
-
-- start the project:
-
-  ```bash
-  cd fx-trading-app
-  npm start
-  ```
-
-- you should be now able to see your our first React application on http://localhost:3000/
+  🎁 After generating the project, you should start it. *npm start* will do the job.
 
 ## Exercise 1 - Pages, Routing and Navigation
 
 ### Create pages
 
-- go to _Day-1\Exercise\Code\fx-trading-app_:
+🚀 Our application will have many pages. Can you identify these ones based on the design? Let's create them as dummy React components.
 
-  ```bash
-  cd 3-Days-of-React-glamour\Day-1\Exercise\Code\fx-trading-app
-  ```
+  🎁 A very important thing when you write code is to be organized. So put these newly-created components into a new folder named *pages* under *fx-trading-app\src*.
 
-- install _CogoToast_ to see the alerts in a nice way:
+  🎁 You can create the components as functions returning one simple message. Do not forget to export them to be available for import and use.
 
-  ```bash
-  npm install --save cogo-toast
-  ```
+### Add routes using React Router
 
-- create a folder for our views in *fx-trading-app\src*:
+🚀 You should also can navigate through the pages you just created. So let's create now the navigation part.
 
-  ```bash
-  cd src
-  mkdir pages
-  cd pages
-  ```
+  🎁 [React Router](https://reacttraining.com/react-router/web/guides/quick-start) should help you a lot with this exercise.
 
-- create React component files for every page following the dashboard page exemple below:
-  - dashboard-page.tsx
-  - login-page.tsx
-  - not-found-page.tsx
-  - register-page.tsx
-
-  ```javascript
-  import React from 'react';
-
-  function DashboardPage() {
-    return <p>Dashboard page</p>;
-  }
-
-  export default DashboardPage;
-  ```
-
-### Add routes using [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
-
-- install react-router-dom and TS types
-
-  ```bash
-  npm install react-router-dom
-  npm install @types/react-router-dom
-  ```
-
-- replace the old markup from _App.tsx_ with the router markup:
-
-  ```javascript
-  import React from 'react';
-  import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-  import LoginPage from './pages/login-page';
-  import RegisterPage from './pages/register-page';
-  import DashboardPage from './pages/dashboard-page';
-  import NotFoundPage from './pages/not-found-page';
-
-  function App() {
-    return (
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <LoginPage />
-          </Route>
-          <Route path="/register">
-            <RegisterPage />
-          </Route>
-          <Route path="/dashboard">
-            <DashboardPage />
-          </Route>
-          <Route path="*">
-            <NotFoundPage />
-          </Route>
-        </Switch>
-      </Router>
-    );
-  }
-
-  export default App;
-  ```
-
-- you should now be able to navigate through your application's URLs (*/dashboard*, */register*) and see the components linked with them
+  🎁 After the instalation part, use the Router components to link your pages with appropriate URLs. This should be done in the root component: *App.tsx*.
 
 ## Exercise 2 - Update favicon
 
-- let's update favicon by first deleting logo files from _src_ and _public_ folders
-- download [fav icon package](https://github.com//WebToLearn/3-days-of-React-glamour/raw/master/Design/fx-trading-favicon-package.zip) and unzip it, then copy and replace all files to _public_ folder
-- replace the following code in the *head* section of _public/index.html_ file with:
+🚀 It is nice to have a logo for each application. Ours already has one. Let's put it as favicon to help users easily identify our app.
 
-  ```html
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <link
-    rel="apple-touch-icon"
-    sizes="180x180"
-    href="%PUBLIC_URL%/apple-touch-icon.png"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="32x32"
-    href="%PUBLIC_URL%/favicon-32x32.png"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="16x16"
-    href="%PUBLIC_URL%/favicon-16x16.png"
-  />
-  <link
-    rel="mask-icon"
-    href="%PUBLIC_URL%/safari-pinned-tab.svg"
-    color="#5bbad5"
-  />
-  <meta name="msapplication-TileColor" content="#da532c" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="description" content="Fx Trading application" />
-  <title>Fx trading app</title>
-  ```
+  🎁 We already packed the logo files for you [here](https://github.com//WebToLearn/3-days-of-React-glamour/raw/master/Design/fx-trading-favicon-package.zip)
+
+  🎁 After downloading and unzipping, put them in _public_ folder.
+
+  🎁 Link these images with our application via *head* section from *index.html* file.
 
 ## Exercise 3 - Add global styles
 
-- add the following styles to _index.css_ file:
+🚀 Even if our application has many pages, they should seem to be from the same story. This means that a global style file should be filled in with some CSS. Does your styles makes the app look the same as in the design mockups?
 
-  ```css
-  @import-normalize;
+  🎁 The global style file is *index.css*.
 
-    html, body{
-    height: 100%;
-    color: #373A3C;
-  }
+  🎁 The browsers can display the elements differently. To have the same standard, we need to import *normalize.css* file.
 
-  h1,h2,h3,h4,h5,h6 {
-    color: #7C7C7C;
-  }
-
-  .btn-primary {
-    background-color: #3496F0;
-  }
-
-  .btn-link {
-    color: #3496F0;
-  }
-  .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #F2F2F2;
-  }
-
-  .flex {
-    display: flex;
-  }
-
-  .flex-vertical-centered {
-    display: flex;
-    align-items: center;
-  }
-
-  .title {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-  }
-
-  .title-border {
-    border-bottom: 1px solid #DDDDDD;
-  }
-
-  .screen-full-height {
-    height: 100vh;
-  }
-  ```
+  🎁 You should define the style for some common tags and classes like _h1_..._h6_, _.btn-primary_ and so on.
 
 ## Exercise 4 - Add Fontawesome
 
-- also in *head* section we will add [Font Awesome](https://fontawesome.com/v4.7.0/) library:
+🚀 Our app looks prettier with icons. [Font Awesome](https://fontawesome.com/v4.7.0/) library will provide them to us.
 
-  ```HTML
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-  ```
+  🎁 *index.html* is the place where you should import the library.
 
 ## Exercise 5 - Add Bootstrap
 
-- add Bootstrap:
+🚀 [Bootstrap](https://create-react-app.dev/docs/adding-bootstrap/) helps us with styling. Let's install it.
 
-  ```bash
-  npm install --save bootstrap
-  ```
-
-- import bootstrap CSS at the beginning of your _src/index.tsx_ file:
-
-  ```javascript
-  import 'bootstrap/dist/css/bootstrap.css';
-  // Put any other imports below so that CSS from your components takes precedence over default styles.
-  ```
+  🎁 You should install *bootstrap* via *npm*.
+  🎁 Then you should import its CSS file into _index.tsx_ file.
 
 ## Exercise 6 - Add Date package
 
-- install the following package for manipulating dates:
+🚀 We need to manipulate dates and it is already known that it's not an easy task. [date-fns](https://date-fns.org/) library comes for helping us.
 
-  ```bash
-  npm install date-fns --save
-  ```
+   🎁 Install *date-fns* via *npm*.
 
 ## Exercise 7 - Add Axios
 
-- install [Axios](https://github.com/axios/axios) for managing AJAX requests:
+🚀 Our Front-End will request data from Back-End server. Let's install [Axios](https://github.com/axios/axios) to do it.
 
-  ```bash
-  npm install axios --save
-  ```
+  🎁 Install *axios* via *npm*.
+
+## Exercise 8 - Add Alerts package
+
+🚀 It is important to give feedback to the user and tell him if their requests were successfully or not. [CogoToast](https://cogoport.github.io/cogo-toast/) alerts are a nice way to display that info.
+
+  🎁 Install *cogo-toast* via *npm*.
