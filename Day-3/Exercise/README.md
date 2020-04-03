@@ -49,16 +49,11 @@
 
   🎁 All database files are now in *mock-server* folder, also the *package.json* for this server. So, install and start npm commands from there.
 
-  ```bash
-  cd 3-day-of-React-glamour\Day-3\Exercise\Code\fx-trading-app\mock-server
-  npm install
-  ```
-
 ## Exercise 1 - Register page
 
 ### User model
 
-🚀 At the end of this day, you will be able to login and register the user. The server will also send back a response to you. So, two models are now required: *User* and *AuthResponse*. Let's take a look at the design mockups and identify the fields. Then, implement the model.
+🚀 At the end of this day, you will be able to login and register the user. The server will also send back a response to you. So, two models are now required: *User* and *AuthResponse*. For the *User* one, let's take a look at the design mockups and identify the fields and then implement it.
 
   🎁 Your interfaces will be created into _models_ folder.
 
@@ -98,7 +93,7 @@
 
 ### Authentication guard
 
-🚀 Why did you implement the login functionality? Because you want a method to restrict the access for the user to some pages if he is not logged in. Create a private *Route* function and check if the user has access to view the pages.
+🚀 Why did you implement the login functionality? Because you wanted a method to restrict the access for the user to some pages if he is not logged in. Create a private *Route* function and check if the user has access to view the pages.
 
   🎁 The private *Route* function will be implemented into the root component: *App.tsx*.
 
@@ -119,6 +114,7 @@
 🚀 An interceptor for requests and responses is also needed. For HTTP requests, a JWT auth token will be added to the Authentication header if the user is logged in. For the responses, it will check if the user is not authorized to view the response, so he will be logged out.
 
   🎁 *axios* will help you again via *AxiosRequestConfig*.
+  
   🎁 The interceptor will be put in *onSubmit* function from *Login* component
 
 ## Exercise 3 - Not found page

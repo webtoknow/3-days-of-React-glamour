@@ -73,7 +73,7 @@
 
 ## Exercise 4 - Add Fontawesome
 
-🚀 Our app looks prettier with icons. [Font Awesome](https://fontawesome.com/v4.7.0/) library will provide them to us.
+🚀 Our app looks prettier with icons. [Font Awesome](https://fontawesome.com) library will provide them to us.
 
   🎁 *index.html* is the place where you should import the library.
 

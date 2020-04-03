@@ -207,7 +207,7 @@
 
 ## Exercise 4 - Add Fontawesome
 
-- to import [Font Awesome](https://fontawesome.com/v4.7.0/) library, add this in *head* section of *index.html*:
+- to import [Font Awesome](https://fontawesome.com) library, add this in *head* section of *index.html*:
 
   ```HTML
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>

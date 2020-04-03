@@ -66,6 +66,8 @@
 
  🎁 You should be organized again and make a new folder called *models* into _src_. This folder will contain all models from our app.
 
+ 🎁 Create your *Transaction* model in this newly-created folder.
+
 ### Constants file
 
 🚀 You will need to make Back-end calls to some URLs. Put all of them into a *constants* file.
@@ -141,6 +143,8 @@
  🎁 The second one allows saving a transaction. For this, the user have to enter the amount he wants to trade, the tenor (SP - now, 1M - in a month or 3M - in three months) and then press on the button which describes the action he want to do: Sell or Buy.
 
  🎁 Saving a transaction on sell or buy actions can be also possible via *axios*.
+
+ 🎁 The user should be also able to remove a widget.
 
  🎁 Every edit on the widget will be put on parent's state as it maintain all the widget items.
 
