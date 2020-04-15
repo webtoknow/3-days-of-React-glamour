@@ -343,7 +343,7 @@
         import React from 'react';
 
         class Component extends React.Component {
-            componentDidUpdate(prevProps) {
+            componentWillUnmount() {
                 console.log("Behavior right before the component is removed from the DOM.");
             }
 
