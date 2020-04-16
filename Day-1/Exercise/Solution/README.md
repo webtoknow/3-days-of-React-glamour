@@ -13,6 +13,7 @@
 - [Exercise 6 - Add Date package](#exercise-6---add-date-package)
 - [Exercise 7 - Add Axios](#exercise-7---add-axios)
 - [Exercise 8 - Add Alerts package](#exercise-8---add-alerts-package)
+- [Exercise 9 - Create blotter-view, fx-rates-view and widget components](#exercise-9---create-blotter-view-fx-rates-view-and-widget-components)
 
 ## Exercise 0 - Initial Setup
 
@@ -251,3 +252,123 @@
   ```bash
   npm install --save cogo-toast
   ```
+
+## Exercise 9 - Create blotter-view, fx-rates-view and widget components
+
+- from design mockup, we can see that it can be divided in 2 big sections: **FX Rates View** and **Blotter View**. Also, the first one contains many widgets looking the same, so this can be also splitted into **Widget** components
+- so, _dashboard-page_ component will use 3 smaller components which will need to be created:
+  - _blotter-view_
+  - _fx-rates-view_
+  - _widget_
+
+![Components](https://raw.githubusercontent.com/WebToLearn/3-days-of-React-glamour/master/Day-1/Theory/img/components.png)
+
+- create _components_ folder:
+
+  ```bash
+  cd src
+  mkdir components
+  cd components
+  ```
+
+- create these 3 new React components, using the example below, as children of _components_ folder:
+  - blotter-view.tsx
+  - fx-rates-view.tsx
+  - widget.tsx
+
+  ```JavaScript
+  import React, { Component } from 'react'
+
+  interface Props {
+  }
+  interface State {
+  }
+
+  class BlotterView extends Component < Props, State > {
+      state = {}
+
+      render() {
+          return (
+              <div>
+                  blotter view
+              </div>
+          )
+      }
+  }
+
+  export default BlotterView
+  ```
+
+- in the design, we can see on the top of the dashboard a navbar, containing the logo and _Logout_ button
+- next step is to include into _dashboard-page_ component the navbar, _blotter-view_ and _fx-rates-view_ and also use _bootstrap_ to place them
+- so, in _dashboard-page.tsx_ we will have:
+
+  ```HTML
+  import React from 'react';
+  import FxRatesView from '../components/fx-rates-view';
+  import BlotterView from '../components/blotter-view';
+  import '../styles/dashboard-page.css';
+
+  function DashboardPage() {
+    return (
+      <div>
+        <header>
+          <nav className="navbar">
+            <img className="fx-main-logo" alt="fx-main-logo" src="./img/logo-main.svg" />
+            <button className="btn btn-logout">Log out</button>
+          </nav>
+        </header>
+
+        <main className="dashboard-container">
+          <div className="row">
+            <div className="col-sm">
+              <FxRatesView></FxRatesView>
+            </div>
+            <div className="col-sm">
+              <BlotterView></BlotterView>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  export default DashboardPage;
+  ```
+
+- create _styles_ folder into _Day-1\Exercise\Code\fx-trading-app\src_, so we can add some dashboard style:
+
+  ```bash
+  cd ..
+  mkdir styles
+  cd styles
+  ```
+
+- create _dashboard-page.css_ and add the following styles:
+
+  ```CSS
+  .dashboard-container {
+      padding: 2rem 3rem;
+  }
+
+  .navbar {
+      padding: 0.5rem 3rem;
+      border: 1px solid #DDDDDD;
+  }
+
+  .fx-main-logo {
+      width: 70px;
+      height: 50px;
+  }
+
+  .btn-logout {
+      border: 1px solid #dddddd;
+      color: #7c7c7c;
+  }
+
+  .btn-logout:hover {
+      background-color: #F2F2F2;
+      opacity: 0.8;
+  }
+  ```
+  

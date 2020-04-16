@@ -6,13 +6,12 @@
 - [Exercise 0 - Configuration](#exercise-0---configuration)
   - [Download all npm dependencies](#download-all-npm-dependencies)
   - [Install and use JSON Server](#install-and-use-json-server)
-- [Exercise 1 - Create blotter-view, fx-rates-view and widget components](#exercise-1---create-blotter-view-fx-rates-view-and-widget-components)
-- [Exercise 2 - Blotter View section](#exercise-2---blotter-view-section)
+- [Exercise 1 - Blotter View section](#exercise-1---blotter-view-section)
   - [Transaction model](#transaction-model)
   - [Constants file](#constants-file)
   - [Implement polling mechanism](#implement-polling-mechanism)
   - [Blotter View render](#blotter-view-render)
-- [Exercise 3 - FX Rates View section](#exercise-3---fx-rates-view-section)
+- [Exercise 2 - FX Rates View section](#exercise-2---fx-rates-view-section)
   - [Rate model](#rate-model)
   - [Widget model](#widget-model)
   - [FX Rates View component](#fx-rates-view-component)
@@ -46,19 +45,7 @@
 
   🎁 Open one different terminal window for each database file and run JSON Server there on a different port.
 
-## Exercise 1 - Create blotter-view, fx-rates-view and widget components
-
-🚀 When you have to build one big page, an important step is to divide it into many sections and make a component for each one, then put them together. Can you identify ours from *Dashboard* page? Let's create the components for each section and put them into the *Dashboard* one! Also, the navbar should be put there!
-
- 🎁 To stay organized, put these newly-created components into a new folder named *components* under *fx-trading-app\src*.
-
- 🎁 You can create the components as classes with *State* and *Props* interfaces, returning one simple message. Do not forget to export them to be available for import and usage.
-
- 🎁 The navbar should be placed in the *header* section and will contain the logo (already present in *public/img* folder) and the *Log out* button (with no functionality at this moment).
-
- 🎁 Do not forget also to create the style file for *Dashboard* and link it from the component file. *dashboard-page.css* will be placed into *src/styles* folder.
-
-## Exercise 2 - Blotter View section
+## Exercise 1 - Blotter View section
 
 ### Transaction model
 
@@ -98,7 +85,7 @@
 
   🎁 The CSS for this file, *botter-view.css* should also be created in *styles* folder and imported from the component.
 
-## Exercise 3 - FX Rates View section
+## Exercise 2 - FX Rates View section
 
 ### Rate model
 

@@ -14,6 +14,7 @@
 - [Exercise 6 - Add Date package](#exercise-6---add-date-package)
 - [Exercise 7 - Add Axios](#exercise-7---add-axios)
 - [Exercise 8 - Add Alerts package](#exercise-8---add-alerts-package)
+- [Exercise 9 - Create blotter-view, fx-rates-view and widget components](#exercise-9---create-blotter-view-fx-rates-view-and-widget-components)
 
 ## General indications
 
@@ -102,3 +103,15 @@
 🚀 It is important to give feedback to the user and tell him if their requests were successfully or not. [CogoToast](https://cogoport.github.io/cogo-toast/) alerts are a nice way to display that info.
 
   🎁 Install *cogo-toast* via *npm*.
+
+## Exercise 9 - Create blotter-view, fx-rates-view and widget components
+
+🚀 When you have to build one big page, an important step is to divide it into many sections and make a component for each one, then put them together. Can you identify ours from *Dashboard* page? Let's create the components for each section and put them into the *Dashboard* one! Also, the navbar should be put there!
+
+ 🎁 To stay organized, put these newly-created components into a new folder named *components* under *fx-trading-app\src*.
+
+ 🎁 You can create the components as classes with *State* and *Props* interfaces, returning one simple message. Do not forget to export them to be available for import and usage.
+
+ 🎁 The navbar should be placed in the *header* section and will contain the logo (already present in *public/img* folder) and the *Log out* button (with no functionality at this moment).
+
+ 🎁 Do not forget also to create the style file for *Dashboard* and link it from the component file. *dashboard-page.css* will be placed into *src/styles* folder.
