@@ -59,7 +59,7 @@ cd 3-Days-of-React-glamour\Day-2\Exercise\Code\fx-trading-app
   - _fx-rates-view_
   - _widget_
 
-![Components](../../Day-1/Theory/img/components.png "Components")
+![Components](https://raw.githubusercontent.com/WebToLearn/3-days-of-React-glamour/master/Day-1/Theory/img/components.png)
 
 - create _components_ folder:
 
