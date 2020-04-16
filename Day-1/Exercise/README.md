@@ -82,6 +82,7 @@
 🚀 [Bootstrap](https://create-react-app.dev/docs/adding-bootstrap/) helps us with styling. Let's install it.
 
   🎁 You should install *bootstrap* via *npm*.
+  
   🎁 Then you should import its CSS file into _index.tsx_ file.
 
 ## Exercise 6 - Add Date package
