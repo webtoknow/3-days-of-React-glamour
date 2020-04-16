@@ -70,7 +70,53 @@
 
   🎁 The browsers can display the elements differently. To have the same standard, we need to import *normalize.css* file.
 
-  🎁 You should define the style for some common tags and classes like _h1_..._h6_, _.btn-primary_ and so on.
+  🎁 You should define the style for some common tags and classes like _h1_..._h6_, _.btn-primary_ and so on:
+  
+    ```css
+    @import-normalize;
+
+      html, body{
+      height: 100%;
+      color: #373A3C;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+      color: #7C7C7C;
+    }
+
+    .btn-primary {
+      background-color: #3496F0;
+    }
+
+    .btn-link {
+      color: #3496F0;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: #F2F2F2;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-vertical-centered {
+      display: flex;
+      align-items: center;
+    }
+
+    .title {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+    }
+
+    .title-border {
+      border-bottom: 1px solid #DDDDDD;
+    }
+
+    .screen-full-height {
+      height: 100vh;
+    }
+    ```
 
 ## Exercise 4 - Add Fontawesome
 
