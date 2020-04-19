@@ -57,12 +57,13 @@
 
     ```JavaScript
     // wrong way
-    this.setState({value: this.state.value + 1})
+    this.setState({value: 2})
+    console.log('Updated state:', this.state)
     ```
 
     ```JavaScript
     // right way
-    this.setState(({value}) => ({value: value + 1}))
+    this.setState({value: 2}, () => console.log('Updated state:', this.state))
     ```
 
 ## Props
