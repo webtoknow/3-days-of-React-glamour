@@ -56,7 +56,7 @@
 
 🚀 It is nice to have a logo for each application. Ours already has one. Let's put it as favicon to help users easily identify our app.
 
-  🎁 We already packed the logo files for you [here](https://github.com//WebToLearn/3-days-of-React-glamour/raw/master/Design/fx-trading-favicon-package.zip)
+  🎁 We already packed the logo files for you [here](https://github.com//WebToLearn/3-days-of-React-glamour/raw/master/Design/Fx-trading/fx-trading-favicon-package.zip)
 
   🎁 After downloading and unzipping, put them in _public_ folder.
 
