@@ -15,7 +15,7 @@
 - a page that displays all the blog articles and allows the user to execute CRUD operations on them
 - the page contains:
   - *Add article* button that opens a [modal](#add-or-edit-article-modal) for adding a new article to the list
-  - the list of articles, paginated into 5 articles per page. Each article contains the following info:
+  - the list of articles, paginated into 3 articles per page. Each article contains the following info:
     - the title
     - the tag, the author and the date
     - the image
