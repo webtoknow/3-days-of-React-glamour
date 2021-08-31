@@ -173,7 +173,7 @@ img {
     overflow: hidden;
 }
 
-.show-modal .modal__overlay {
+.show-modal.modal__overlay {
     display: flex;
 }
 
