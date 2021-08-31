@@ -1,9 +1,15 @@
+import { Dispatch, SetStateAction } from "react";
+
 interface ArticleProps {
-    article: ArticleModel;
+    article: IArticle;
+    setTempArticle: Dispatch<SetStateAction<IArticle>>;
+    setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+    getArticlesFromServer: Function;
+
 }
 
-export interface ArticleModel {
-    id: number;
+export interface IArticle {
+    id?: number;
     title: string;
     tag: string;
     author: string;
@@ -14,8 +20,17 @@ export interface ArticleModel {
 }
 
 function Article(props: ArticleProps) {
-    const { article } = props
+    const { article, setTempArticle, setIsModalOpen, getArticlesFromServer } = props
     const content = article.content.substring(0, 1000);
+
+    const deleteArticle = (id: number = 0) => {
+        fetch(`http://localhost:4000/articles/${id}`, {
+         method: 'DELETE',
+         }).then(function () {
+            getArticlesFromServer();
+       });
+     }
+    
     return (
         <article>
             <h2 className="title">{article.title}</h2>
@@ -27,8 +42,14 @@ function Article(props: ArticleProps) {
                 <li className="info__item">{article.date}</li>
             </ul>
             <div className="actions__container">
-                <button type="button" className="actions__btn">Edit</button>
-                <button type="button" className="actions__btn">Delete</button>
+                <button
+                    type="button"
+                    onClick={() => {
+                        setIsModalOpen(true);
+                        setTempArticle((prevState: IArticle) => ({...prevState, ...article} as IArticle));
+                    }}
+                    className="actions__btn">Edit</button>
+                <button type="button" onClick={() => deleteArticle(article.id)} className="actions__btn">Delete</button>
             </div>
 
             <img src={article.imgUrl} alt="Bike" />
