@@ -149,7 +149,8 @@ img {
 
 .footer {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
     margin: 35px 0 100px 0;
 }
 
@@ -158,7 +159,14 @@ img {
     font-family: var(--montserrat-font);
     font-size: 34px;
     line-height: 1.2;
-    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.footer__link--next {
+    align-self: flex-end;
+    margin-top: -40px;
 }
 
 .show-modal {
