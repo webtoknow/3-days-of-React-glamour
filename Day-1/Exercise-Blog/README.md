@@ -108,11 +108,15 @@ npm install -g json-server
 
 ## Exercise 4 - Add Google Fonts
 
+🚀 The fonts make the blog page looks really nice. Insert them in our project!
+
 🎁 Use [Google Fonts](https://fonts.google.com/) to add `Cardo` and `Montserrat` fonts to the `<head>` of *blog\public\index.html*.
 
-## Exercise 5 - Create menu component
+## Exercise 5 - Create Menu component
 
-🎁 In a new folder named *components* (located under *blog\src*), create the *menu* component using the HTML found in [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD).
+🚀 If we want to extend our blog in the future, we need a menu component. Let's build it together!
+
+🎁 In a new folder named *components* (located under *blog\src*), create the *Menu* component using the HTML found in [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD).
 
 🎁 Integrate Menu into *App.tsx*. App component should look like:
 
@@ -138,13 +142,17 @@ function App() {
 
 ## Exercise 6 - Display articles
 
+🚀 We should display our articles in the Home page.
+
 🎁 Use *fetch* to get the articles list from server in *Home* component. A good article about AJAX can be found in [React's documentation](https://reactjs.org/docs/faq-ajax.html).
 
 🎁 Create the article component using the HTML found in [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD) and use it to display the article. Don't forget to create article interface.
 
 🎁 Copy the *img* folder from [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD) to *blog/public*.
 
-## Exercise 7 - Create Footer component
+## Exercise 7 - Pagination
+
+🚀 We can have many articles in our blog, so a pagination is really needed.
 
 🎁 Create the Footer component using the HTML found in [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD).
 
