@@ -24,6 +24,7 @@ The agenda has the following content:
   - [Exercise - Fx Trading app](Day-2/Exercise-Fx-trading/README.md)
 - Day 3
   - [Introduction](Day-3/Theory/README.md)
+  - [Exercise - Blog app](Day-3/Exercise-Blog/README.md)
   - [Exercise - Fx Trading app](Day-3/Exercise-Fx-trading/README.md)
 
 ## Technical requirements
