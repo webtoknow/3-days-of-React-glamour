@@ -14,7 +14,7 @@
 
 🔥 To help you to code without too many tears, 🎁 means that we are providing some hints to you.
 
-🔥 You can find the exercises solutions for this day at _Day-2\Exercise-Blog\Solution_. Please check the solutions after you finish the exercises to compare your code.
+🔥 You can find the exercises solutions for this day at _Day-3\Exercise-Blog\Solution_. Please check the solutions after you finish the exercises to compare your code.
 
 ## Exercise 0 - Development setup
 
@@ -28,10 +28,10 @@ git clone https://github.com/WebToLearn/3-days-of-React-glamour.git
 
 ### Navigate to the location
 
-The working folder for this day will be _Day-2\Exercise-Blog\Code\Blog_. Navigate to it using terminal.
+The working folder for this day will be _Day-3\Exercise-Blog\Code\Blog_. Navigate to it using terminal.
 
 ```bash
-cd 3-days-of-React-glamour\Day-1\Exercise-Blog\Code\Blog
+cd 3-days-of-React-glamour\Day-3\Exercise-Blog\Code\Blog
 ```
 
 ### Install packages
@@ -44,7 +44,7 @@ npm install
 
 ### Start backend server
 
-Open a new terminal in the same location _Day-1\Exercise-Blog\Code_ and start the JSON server:
+Open a new terminal in the same location _Day-3\Exercise-Blog\Code_ and start the JSON server:
 
 ```bash
 json-server --watch db.json -p 4000
@@ -58,20 +58,20 @@ npm install -g json-server
 
 ## Exercise 1 - Pass article id to details page
 
-🚀 Let's add some navigation functionality to Read More button!
+🚀 Let's add some navigation functionality to *Read More* button!
 
-🎁 Pass `articleId` via router when navigate from Home page to Details page.
+🎁 Pass `articleId` via router when navigate from *Home* page to *Details* page.
 
 ## Exercise 2 - Update Details page
 
 🚀 Now it's time to see the full article here!
 
-🎁 Use the HTML found in [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD) to build the Details page.
+🎁 Use the HTML found in [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD) to build the *Details* page.
 
-🎁 Split the article content into two parts and add the Saying in the middle.
+🎁 Split the article content into two parts and add the *Saying* in the middle.
 
 ### Exercise 3 - Create pagination
 
-🚀 Life will be easier if you can go to other articles directly from the Details page.
+🚀 Life will be easier if you can go to other articles directly from the *Details* page.
 
-🎁 Create the logic to navigate to the previous and the next article in our blog. Don't forget to make the *previous article* and *next article* buttons to have the same style like in the Home page.
+🎁 Create the logic to navigate to the previous and the next article in our blog. Don't forget to make the *previous article* and *next article* buttons to have the same style like in the *Home* page.

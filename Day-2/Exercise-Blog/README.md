@@ -31,7 +31,7 @@ git clone https://github.com/WebToLearn/3-days-of-React-glamour.git
 The working folder for this day will be _Day-2\Exercise-Blog\Code\Blog_. Navigate to it using terminal.
 
 ```bash
-cd 3-days-of-React-glamour\Day-1\Exercise-Blog\Code\Blog
+cd 3-days-of-React-glamour\Day-2\Exercise-Blog\Code\Blog
 ```
 
 ### Install packages
@@ -44,7 +44,7 @@ npm install
 
 ### Start backend server
 
-Open a new terminal in the same location _Day-1\Exercise-Blog\Code_ and start the JSON server:
+Open a new terminal in the same location _Day-2\Exercise-Blog\Code_ and start the JSON server:
 
 ```bash
 json-server --watch db.json -p 4000
@@ -58,19 +58,19 @@ npm install -g json-server
 
 ## Exercise 1 - Create add component
 
-🚀 Something is missing from the Home page, isn't it? Let's fix this together!
+🚀 Something is missing from the *Home* page, isn't it? Let's fix this together!
 
-🎁 Create the Add button component using the HTML found in [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD).
+🎁 Create the *Add* button component using the HTML found in [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD).
 
 ## Exercise 2 - Create Modal component
 
 🚀 Let's use a Modal to manage the list of articles!
 
-🎁 Create the Modal component using the HTML found in [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD) and add it to Home page.
+🎁 Create the Modal component using the HTML found in [/Design/Blog/HTML-CSS folder](../../Design/Blog/HTML-CSS/README.MD) and add it to *Home* page.
 
-🎁 Create click events on Add and Edit buttons to open the modal.
+🎁 Create click events on *Add* and *Edit* buttons to open the modal.
 
-🎁 Create an event on Cancel button in the modal to close it.
+🎁 Create an event on *Cancel* button in the modal to close it.
 
 ### Exercise 3 - CRUD
 
@@ -80,7 +80,7 @@ npm install -g json-server
 
 🎁 By using set state methods, we can update `tempArticle` from modal form.
 
-🎁 Let's build the _Create_ , _Update_ and _Delete_ methods to call the server. In the table below, we can find the CRUD operations (_Create_, _Read_, _Update_ si _Delete_) associated with the appropiate HTTP methods:
+🎁 Let's build the _Create_ , _Update_ and _Delete_ methods to call the server. In the table below, we can find the CRUD operations (_Create_, _Read_, _Update_ and _Delete_) associated with the appropiate HTTP methods:
 
 | CRUD Operations | HTTP Methods | URL           | URL Parameters | Request body | Examples                     |
 | --------------- | ------------ | ------------- | -------------- | ------------ | ---------------------------- |
