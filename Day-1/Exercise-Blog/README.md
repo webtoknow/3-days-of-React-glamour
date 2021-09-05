@@ -80,7 +80,7 @@ npm install -g json-server
 
   🎁 After the installation part, use the Router components to link your pages with the appropriate URLs. This should be done in the root component: *App.tsx*.
 
- 🎁 To have full Typescript suport please also install [React router types](https://www.npmjs.com/package/@types/react-router-dom).
+ 🎁 To have full Typescript support please also install [React router types](https://www.npmjs.com/package/@types/react-router-dom).
 
 ## Exercise 3 - Add global styles
 
